@@ -33,12 +33,18 @@
             NSLog(@"Error:%@",error.description);
         }
         if (data) {
+            
+            NSXMLParser * parser = [[NSXMLParser alloc] initWithData:data];
+            [parser setDelegate:[AladinBookManager sharedInstance]];
+            [parser parse];
+            
+            NSString *newStr = [[NSString stringWithUTF8String:[data bytes]] stringByReplacingOccurrencesOfString:@";" withString:@""];
             NSDictionary *json_response = [NSJSONSerialization JSONObjectWithData:data
                                                                           options:NSJSONReadingAllowFragments
                                                                             error:NULL];
             //NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
-            completionHandler(json_response);
+            //completionHandler(json_response);
         }
     }];
     
@@ -87,5 +93,6 @@
     }
     return connectNetwork;
 }
+
 
 @end

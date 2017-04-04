@@ -29,6 +29,7 @@
     #import "Requester.h"
     #import "GoogleBookManager.h"
     #import "ImageCacheManager.h"
+    #import "AladinBookManager.h"
 
     #import "JsonObject.h"
 

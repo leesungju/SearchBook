@@ -31,13 +31,14 @@ NSString *const kGoogleApiKey = @"&key=AIzaSyCCFDlvau4uGfFsG87KTlja8Y57f5Y1HWY";
     NSMutableString * searchText = [NSMutableString stringWithFormat:@"q="];
     str = [NSStrUtils urlEncoding:str];
     if(searchType == kEBookType_intitle){
-        [searchText appendString:str];
+        [searchText appendFormat:@"%@",str];
+        [searchText appendString:@"%26*"];
     }else if(searchType == kEBookType_inauthor){
-        [searchText appendFormat:@"inauthor:%@",str];
+        [searchText appendFormat:@"+inauthor:%@",str];
     }else if(searchType == kEBookType_inpublisher){
-        [searchText appendFormat:@"inpublisher:%@",str];
+        [searchText appendFormat:@"+inpublisher:%@",str];
     }else{
-        [searchText appendFormat:@"subject:%@",str];
+        [searchText appendFormat:@"+subject:%@",str];
     }
     
     NSMutableString * typeStr = [NSMutableString stringWithString:@"&filter="];
@@ -59,7 +60,7 @@ NSString *const kGoogleApiKey = @"&key=AIzaSyCCFDlvau4uGfFsG87KTlja8Y57f5Y1HWY";
     }
     
     
-    NSString * url =  [NSString stringWithFormat:@"%@%@%@%@&startIndex=%d&maxResults=30%@",kGoogleUrl,searchText,typeStr,downTypeStr,pageIndex,kGoogleApiKey];
+    NSString * url =  [NSString stringWithFormat:@"%@%@%@%@&startIndex=%d&maxResults=40&projection=lite&orderBy=newest&&fields=kind,totalItems,items(volumeInfo(title,authors,description,imageLinks),saleInfo(retailPrice,buyLink))%@",kGoogleUrl,searchText,typeStr,downTypeStr,pageIndex,kGoogleApiKey];
     Requester * req = [[Requester alloc] initWithUrl:url connectionType:kConnectionType_GET];
     [req sendRequest:completionHandler];
 }

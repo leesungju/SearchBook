@@ -11,8 +11,9 @@
 #import "Items.h"
 #import "VolumeInfo.h"
 #import "ImageLinks.h"
+#import "AladinItem.h"
 
-@interface MainViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface MainViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *searchBtn;
 @property (strong, nonatomic) IBOutlet UITextField *searchText;
 @property (strong, nonatomic) IBOutlet UITableView *mainTableView;
@@ -58,26 +59,47 @@
     [_mainTableView setDelegate:self];
     [_mainTableView setDataSource:self];
     [_mainTableView setHidden:YES];
+    [_searchText setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [_searchText setDelegate:self];
+    [_searchText setReturnKeyType:UIReturnKeySearch];
     
 }
 
 - (void)search:(NSString*)str page:(int)page
 {
-    [[GoogleBookManager sharedInstance] searchEBook:str
+    [_searchText resignFirstResponder];
+    /*[[GoogleBookManager sharedInstance] searchEBook:str
                                          searchType:kEBookType_intitle
                                           priceType:kEBookPrice_ebooks
                                            downType:kEBookDown_epub
-                                          pageIndex:page
+                                          pageIndex:page*40
                                   completionHandler:^(NSDictionary *ret) {
                                       [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                                           _totalCount = [[ret objectForKey:@"totalItems"] intValue];
-                                          [_itemArray addObjectsFromArray:[ret objectForKey:@"items"]];
+                                          NSArray * itmes = [ret objectForKey:@"items"];
+                                          [_itemArray addObjectsFromArray:itmes];
                                           [_mainTableView reloadData];
                                           [_mainTableView setHidden:NO];
                                           _isPaging = NO;
-                                          NSLog(@"%d %ld",_currentPage ,[((NSArray*)[ret objectForKey:@"items"]) count]);
+                                          NSLog(@"_currentPage : %d  _totalCount :%d",_currentPage ,_totalCount);
                                       }];
+                                  }];*/
+    [[AladinBookManager sharedInstance] searchEBook:str
+                                         searchType:kEBookType_intitle
+                                          pageIndex:page
+                                  completionHandler:^(NSDictionary *ret) {
+                                      _totalCount = [[ret objectForKey:@"totalResults"] intValue];
+                                      NSArray * itmes = [ret objectForKey:@"items"];
+                                      [_itemArray addObjectsFromArray:itmes];
+           
+                                      dispatch_async(dispatch_get_main_queue(), ^{
+                                          [_mainTableView reloadData];
+                                          [_mainTableView setHidden:NO];
+                                      });
+                                      _isPaging = NO;
                                   }];
+    
+    
 }
 
 
@@ -109,17 +131,19 @@
         //        cell=[nib objectAtIndex:0];
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    Items * item = [Items new];
-    [item setDict:[_itemArray objectAtIndex:indexPath.row]];
-    VolumeInfo * volumeInfo = [VolumeInfo new];
-    [volumeInfo setDict:item.volumeInfo];
-    ImageLinks * imagLink = [ImageLinks new];
-    [imagLink setDict:[volumeInfo imageLinks]];
+    // Items * item = [Items new];
+    // [item setDict:[_itemArray objectAtIndex:indexPath.row]];
+    // VolumeInfo * volumeInfo = [VolumeInfo new];
+    // [volumeInfo setDict:item.volumeInfo];
+    // ImageLinks * imagLink = [ImageLinks new];
+    // [imagLink setDict:[volumeInfo imageLinks]];
     
-    [cell.textLabel setText:[NSString stringWithFormat:@"%d. %@",(int)indexPath.row+1, [volumeInfo title]]];
-    [cell.detailTextLabel setText:[[volumeInfo authors] firstObject]];
+    AladinItem * item = [_itemArray objectAtIndex:indexPath.row];
     
-    [[ImageCacheManager sharedInstance] loadFromUrl:[NSURL URLWithString:imagLink.smallThumbnail] callback:^(UIImage *image) {
+    [cell.textLabel setText:[NSString stringWithFormat:@"%d. %@",(int)indexPath.row+1, [item title]]];
+    [cell.detailTextLabel setText:[item author]];
+    
+    [[ImageCacheManager sharedInstance] loadFromUrl:[NSURL URLWithString:[item cover]] callback:^(UIImage *image) {
         [cell.imageView setImage:image];
     }];
     return cell;
@@ -130,14 +154,35 @@
     NSInteger lastRowIndex = [tableView numberOfRowsInSection:lastSectionIndex] - 1;
     if ((indexPath.section == lastSectionIndex) && (indexPath.row == lastRowIndex)) {
         // This is the last cell
+        // if(!_isPaging){
+        //     if(_totalCount < _currentPage*40) return;
+        //     _currentPage++;
+        //     [self search:_searchStr page:_currentPage];
+        //     _isPaging = YES;
+        // }
+        
         if(!_isPaging){
-            NSLog(@"%d , %d",_totalCount, _currentPage);
-            if(_totalCount < _currentPage) return;
-            _currentPage++;
+            if(_totalCount/40 + 1 < _currentPage) return;
+            _currentPage += 1;
             [self search:_searchStr page:_currentPage];
             _isPaging = YES;
         }
     }
+}
+
+#pragma mark - UITextField Delegate Methods
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    _currentPage = 1;
+    [_itemArray removeAllObjects];
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    _searchStr = _searchText.text;
+    [self search:_searchStr page:_currentPage];
+    return YES;
 }
 
 #pragma mark - Action Methods

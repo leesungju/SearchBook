@@ -16,6 +16,8 @@
 		140CBDA21E8F5CD400F07119 /* SaleInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 140CBD981E8F5CD400F07119 /* SaleInfo.m */; };
 		140CBDA31E8F5CD400F07119 /* VolumeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 140CBD9A1E8F5CD400F07119 /* VolumeInfo.m */; };
 		140CBDA61E8F711100F07119 /* ImageCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 140CBDA51E8F711100F07119 /* ImageCacheManager.m */; };
+		1416E8241E93ADBB000C0C0E /* AladinBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1416E8231E93ADBB000C0C0E /* AladinBookManager.m */; };
+		1416E82A1E93B999000C0C0E /* AladinItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1416E8291E93B999000C0C0E /* AladinItem.m */; };
 		14EA73031E8E66B400F902C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EA73021E8E66B400F902C1 /* main.m */; };
 		14EA73111E8E66B400F902C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14EA730F1E8E66B400F902C1 /* LaunchScreen.storyboard */; };
 		14EA731C1E8E66B400F902C1 /* SearchBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EA731B1E8E66B400F902C1 /* SearchBookTests.m */; };
@@ -116,6 +118,10 @@
 		140CBD9A1E8F5CD400F07119 /* VolumeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeInfo.m; sourceTree = "<group>"; };
 		140CBDA41E8F711100F07119 /* ImageCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCacheManager.h; sourceTree = "<group>"; };
 		140CBDA51E8F711100F07119 /* ImageCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCacheManager.m; sourceTree = "<group>"; };
+		1416E8221E93ADBA000C0C0E /* AladinBookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AladinBookManager.h; sourceTree = "<group>"; };
+		1416E8231E93ADBB000C0C0E /* AladinBookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AladinBookManager.m; sourceTree = "<group>"; };
+		1416E8281E93B999000C0C0E /* AladinItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AladinItem.h; sourceTree = "<group>"; };
+		1416E8291E93B999000C0C0E /* AladinItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AladinItem.m; sourceTree = "<group>"; };
 		14EA72FE1E8E66B400F902C1 /* SearchBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14EA73021E8E66B400F902C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		14EA73101E8E66B400F902C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -377,6 +383,8 @@
 				14EA73D71E8E742800F902C1 /* GoogleBookManager.m */,
 				140CBDA41E8F711100F07119 /* ImageCacheManager.h */,
 				140CBDA51E8F711100F07119 /* ImageCacheManager.m */,
+				1416E8221E93ADBA000C0C0E /* AladinBookManager.h */,
+				1416E8231E93ADBB000C0C0E /* AladinBookManager.m */,
 			);
 			path = manager;
 			sourceTree = "<group>";
@@ -409,6 +417,8 @@
 				140CBD981E8F5CD400F07119 /* SaleInfo.m */,
 				140CBD991E8F5CD400F07119 /* VolumeInfo.h */,
 				140CBD9A1E8F5CD400F07119 /* VolumeInfo.m */,
+				1416E8281E93B999000C0C0E /* AladinItem.h */,
+				1416E8291E93B999000C0C0E /* AladinItem.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -656,6 +666,7 @@
 				TargetAttributes = {
 					14EA72FD1E8E66B300F902C1 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 9LGNSY89WE;
 						ProvisioningStyle = Automatic;
 					};
 					14EA73161E8E66B400F902C1 = {
@@ -738,6 +749,7 @@
 				14EA735F1E8E678D00F902C1 /* AppDelegate.m in Sources */,
 				14EA73681E8E678D00F902C1 /* PreferenceManager.m in Sources */,
 				140CBDA31E8F5CD400F07119 /* VolumeInfo.m in Sources */,
+				1416E82A1E93B999000C0C0E /* AladinItem.m in Sources */,
 				140CBDA11E8F5CD400F07119 /* ReadingModes.m in Sources */,
 				140CBD9B1E8F5CD400F07119 /* AccessInfo.m in Sources */,
 				14EA73D81E8E742800F902C1 /* GoogleBookManager.m in Sources */,
@@ -761,6 +773,7 @@
 				140CBDA01E8F5CD400F07119 /* Price.m in Sources */,
 				14EA73661E8E678D00F902C1 /* FCMManager.m in Sources */,
 				14EA736C1E8E678D00F902C1 /* MainViewController.m in Sources */,
+				1416E8241E93ADBB000C0C0E /* AladinBookManager.m in Sources */,
 				14EA73D31E8E6FF500F902C1 /* NetworkManager.m in Sources */,
 				140CBDA61E8F711100F07119 /* ImageCacheManager.m in Sources */,
 				14EA73651E8E678D00F902C1 /* UIView+Common.m in Sources */,
@@ -850,7 +863,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -892,7 +905,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -904,6 +917,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9LGNSY89WE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SearchBook/Frameworks/Firebase/AdMob",
@@ -920,6 +934,7 @@
 				);
 				GCC_PREFIX_HEADER = SearchBook/SearchBook.pch;
 				INFOPLIST_FILE = SearchBook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.t5online.demo.SearchBook;
@@ -931,6 +946,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9LGNSY89WE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SearchBook/Frameworks/Firebase/AdMob",
@@ -947,6 +963,7 @@
 				);
 				GCC_PREFIX_HEADER = SearchBook/SearchBook.pch;
 				INFOPLIST_FILE = SearchBook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.t5online.demo.SearchBook;
