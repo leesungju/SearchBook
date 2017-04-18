@@ -16,6 +16,8 @@
 		140CBDA21E8F5CD400F07119 /* SaleInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 140CBD981E8F5CD400F07119 /* SaleInfo.m */; };
 		140CBDA31E8F5CD400F07119 /* VolumeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 140CBD9A1E8F5CD400F07119 /* VolumeInfo.m */; };
 		140CBDA61E8F711100F07119 /* ImageCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 140CBDA51E8F711100F07119 /* ImageCacheManager.m */; };
+		140E22571EA6356C007B2F61 /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140E22551EA6356C007B2F61 /* SearchResultViewController.m */; };
+		140E22581EA6356C007B2F61 /* SearchResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140E22561EA6356C007B2F61 /* SearchResultViewController.xib */; };
 		1416E8241E93ADBB000C0C0E /* AladinBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1416E8231E93ADBB000C0C0E /* AladinBookManager.m */; };
 		1416E82A1E93B999000C0C0E /* AladinItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1416E8291E93B999000C0C0E /* AladinItem.m */; };
 		14EA73031E8E66B400F902C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EA73021E8E66B400F902C1 /* main.m */; };
@@ -118,6 +120,9 @@
 		140CBD9A1E8F5CD400F07119 /* VolumeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeInfo.m; sourceTree = "<group>"; };
 		140CBDA41E8F711100F07119 /* ImageCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCacheManager.h; sourceTree = "<group>"; };
 		140CBDA51E8F711100F07119 /* ImageCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCacheManager.m; sourceTree = "<group>"; };
+		140E22541EA6356C007B2F61 /* SearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
+		140E22551EA6356C007B2F61 /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
+		140E22561EA6356C007B2F61 /* SearchResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultViewController.xib; sourceTree = "<group>"; };
 		1416E8221E93ADBA000C0C0E /* AladinBookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AladinBookManager.h; sourceTree = "<group>"; };
 		1416E8231E93ADBB000C0C0E /* AladinBookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AladinBookManager.m; sourceTree = "<group>"; };
 		1416E8281E93B999000C0C0E /* AladinItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AladinItem.h; sourceTree = "<group>"; };
@@ -434,6 +439,9 @@
 				14EA735A1E8E678D00F902C1 /* MainViewController.h */,
 				14EA735B1E8E678D00F902C1 /* MainViewController.m */,
 				14EA735C1E8E678D00F902C1 /* MainViewController.xib */,
+				140E22541EA6356C007B2F61 /* SearchResultViewController.h */,
+				140E22551EA6356C007B2F61 /* SearchResultViewController.m */,
+				140E22561EA6356C007B2F61 /* SearchResultViewController.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -709,6 +717,7 @@
 				14EA73C01E8E67FF00F902C1 /* NOTICES in Resources */,
 				14EA73111E8E66B400F902C1 /* LaunchScreen.storyboard in Resources */,
 				14EA73CB1E8E69D100F902C1 /* GoogleService-Info.plist in Resources */,
+				140E22581EA6356C007B2F61 /* SearchResultViewController.xib in Resources */,
 				14EA736D1E8E678D00F902C1 /* MainViewController.xib in Resources */,
 				14EA73AD1E8E67FF00F902C1 /* batch-upload in Resources */,
 				14EA73BC1E8E67FF00F902C1 /* GINInviteResources.bundle in Resources */,
@@ -747,6 +756,7 @@
 			files = (
 				14EA73621E8E678D00F902C1 /* Util.m in Sources */,
 				14EA735F1E8E678D00F902C1 /* AppDelegate.m in Sources */,
+				140E22571EA6356C007B2F61 /* SearchResultViewController.m in Sources */,
 				14EA73681E8E678D00F902C1 /* PreferenceManager.m in Sources */,
 				140CBDA31E8F5CD400F07119 /* VolumeInfo.m in Sources */,
 				1416E82A1E93B999000C0C0E /* AladinItem.m in Sources */,

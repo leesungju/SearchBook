@@ -33,18 +33,19 @@
             NSLog(@"Error:%@",error.description);
         }
         if (data) {
-            
-            NSXMLParser * parser = [[NSXMLParser alloc] initWithData:data];
-            [parser setDelegate:[AladinBookManager sharedInstance]];
-            [parser parse];
-            
-            NSString *newStr = [[NSString stringWithUTF8String:[data bytes]] stringByReplacingOccurrencesOfString:@";" withString:@""];
-            NSDictionary *json_response = [NSJSONSerialization JSONObjectWithData:data
-                                                                          options:NSJSONReadingAllowFragments
-                                                                            error:NULL];
-            //NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-            //completionHandler(json_response);
+            NSString* contentType = [[(NSHTTPURLResponse*)response allHeaderFields] valueForKey:@"content-type"];
+            if([contentType containsString:@"application/json"]){
+                NSString *newStr = [[NSString stringWithUTF8String:[data bytes]] stringByReplacingOccurrencesOfString:@";" withString:@""];
+                NSDictionary *json_response = [NSJSONSerialization JSONObjectWithData:data
+                                                                              options:NSJSONReadingAllowFragments
+                                                                                error:NULL];
+                //                NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                completionHandler(json_response);
+            }else{
+                NSXMLParser * parser = [[NSXMLParser alloc] initWithData:data];
+                [parser setDelegate:[AladinBookManager sharedInstance]];
+                [parser parse];
+            }
         }
     }];
     
