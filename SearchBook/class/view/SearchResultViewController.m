@@ -170,6 +170,10 @@
         
         [cell.textLabel setText:[NSString stringWithFormat:@"%d. %@",(int)indexPath.row+1, volumeInfo.title]];
         [cell.detailTextLabel setText:[volumeInfo.authors firstObject]];
+        [[ImageCacheManager sharedInstance] loadFromUrl:[NSURL URLWithString:[imagLink smallThumbnail]] callback:^(UIImage *image) {
+            [cell.imageView setImage:image];
+            [cell setNeedsDisplay];
+        }];
         return cell;
         
     }else if(tableView == _aladinTableView){
@@ -186,9 +190,9 @@
         
         [cell.textLabel setText:[NSString stringWithFormat:@"%d. %@",(int)indexPath.row+1, [item title]]];
         [cell.detailTextLabel setText:[item author]];
-        
         [[ImageCacheManager sharedInstance] loadFromUrl:[NSURL URLWithString:[item cover]] callback:^(UIImage *image) {
             [cell.imageView setImage:image];
+            [cell setNeedsDisplay];
         }];
         return cell;
         
@@ -253,6 +257,10 @@
     _searchStr = _mainTextField.text;
     [self googleSearch:_searchStr page:1];
     [self aladinSearch:_searchStr page:1];
+}
+
+- (IBAction)backAction:(id)sender {
+    [[GUIManager sharedInstance] backControllerWithAnimation:YES];
 }
 
 
