@@ -76,6 +76,7 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
+    [_searchTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
     [_searchTextField setDelegate:self];
     [_searchTextField setPlaceholder:@"검색"];
     [_searchTextField setRadius:5];
@@ -84,7 +85,7 @@
 
 - (void)setOtherViews
 {
-    NSArray * popArray = [NSArray arrayWithObjects:@"1",@"22",@"333",@"4444",@"555555",@"6666666",@"77777777",@"88888888",@"999999999",@"10", nil];
+    NSArray * popArray = [NSArray arrayWithObjects:@"flower",@"22",@"333",@"4444",@"555555",@"6666666",@"77777777",@"88888888",@"999999999",@"10", nil];
     float y = _popularityLabel.bottomY + 10;
     for (int i = 0 ; i < 10; i++) {
         UIButton * btn = [UIButton new];
@@ -172,14 +173,18 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [self search:_searchTextField.text page:1];
+    if(_searchTextField.text.length > 0){
+        [self search:_searchTextField.text page:1];
+    }
     return YES;
 }
 
 
 #pragma mark - Action Methods
 - (IBAction)searchAction:(id)sender {
-    [self search:_searchTextField.text page:1];
+    if(_searchTextField.text.length > 0){
+        [self search:_searchTextField.text page:1];
+    }
 }
 
 - (IBAction)filterAction:(id)sender {
@@ -203,7 +208,9 @@
 
 - (void)popAction:(UIButton*)sender
 {
-    NSLog(@"%@",sender.titleLabel.text);
+    if(sender.titleLabel.text.length > 0){
+        [self search:sender.titleLabel.text page:1];
+    }
 }
 
 - (void)backgroundTouch:(id)sender

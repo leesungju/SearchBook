@@ -18,6 +18,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *mainTextField;
 
 @property (strong, nonatomic) IBOutlet UIView *middleView;
+
+@property (strong, nonatomic) IBOutlet UIButton *googleBtn;
+@property (strong, nonatomic) IBOutlet UIButton *aladinBtn;
 @property (strong, nonatomic) IBOutlet UITableView *googleTableView;
 @property (strong, nonatomic) IBOutlet UITableView *aladinTableView;
 
@@ -68,14 +71,22 @@
     
     [_mainTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
     [_mainTextField setDelegate:self];
+    [_mainTextField setPlaceholder:@"검색"];
     [_mainTextField setReturnKeyType:UIReturnKeySearch];
+    [_mainTextField setRadius:5];
+    [_aladinTableView setHidden:YES];
+    [_googleTableView setHidden:NO];
     
 }
 
 - (void)search:(NSString*)str page:(int)page
 {
-    [self googleSearch:str page:page];
-    [self aladinSearch:str page:page];
+    _searchStr = str;
+    [self googleSearch:_searchStr page:page];
+    [self aladinSearch:_searchStr page:page];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_mainTextField setText:_searchStr];
+    });
 }
 
 - (void)googleSearch:(NSString*)str page:(int)page
@@ -93,7 +104,6 @@
                                           
                                           dispatch_async(dispatch_get_main_queue(), ^{
                                               [_googleTableView reloadData];
-                                              [_googleTableView setHidden:NO];
                                           });
                                           _isGooglePaging = NO;
                                   }];
@@ -113,8 +123,6 @@
                                       
                                       dispatch_async(dispatch_get_main_queue(), ^{
                                           [_aladinTableView reloadData];
-                                          [_aladinTableView setHidden:NO];
-                                          
                                       });
                                       _isAladinPaging = NO;
                                   }];
@@ -263,5 +271,20 @@
     [[GUIManager sharedInstance] backControllerWithAnimation:YES];
 }
 
+- (IBAction)googleAction:(id)sender {
+    [_aladinTableView setHidden:YES];
+    [_googleTableView setHidden:NO];
+    
+    [_aladinBtn setBackgroundColor:RGB(204, 204, 204)];
+    [_googleBtn setBackgroundColor:RGB(149, 149, 149)];
+    
+}
+- (IBAction)aladinAction:(id)sender {
+    [_aladinTableView setHidden:NO];
+    [_googleTableView setHidden:YES];
+    
+    [_aladinBtn setBackgroundColor:RGB(149, 149, 149)];
+    [_googleBtn setBackgroundColor:RGB(204, 204, 204)];
+}
 
 @end
