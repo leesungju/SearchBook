@@ -57,6 +57,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    [self.view addTapGestureTarget:self action:@selector(backgroundTouch:)];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -76,7 +78,7 @@
     [super viewDidLayoutSubviews];
     [_searchTextField setDelegate:self];
     [_searchTextField setPlaceholder:@"검색"];
-    [_searchTextField showBorder:[UIColor blackColor] width:1];
+    [_searchTextField setRadius:5];
     [self setOtherViews];
 }
 
@@ -202,6 +204,11 @@
 - (void)popAction:(UIButton*)sender
 {
     NSLog(@"%@",sender.titleLabel.text);
+}
+
+- (void)backgroundTouch:(id)sender
+{
+    [_searchTextField resignFirstResponder];
 }
 
 #pragma mark
