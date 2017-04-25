@@ -43,7 +43,7 @@
                         </button>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NM8-m7-RhQ">
                             <rect key="frame" x="45" y="35" width="320" height="30"/>
-                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.19982394370000001" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.81176470588235294" green="0.81176470588235294" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="IHv-Ek-SNt"/>
                             </constraints>
@@ -52,7 +52,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                     </subviews>
-                    <color key="backgroundColor" red="0.88672906160354614" green="0.88740354776382446" blue="0.8868335485458374" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="XLZ-0I-Nme" firstAttribute="leading" secondItem="DQu-x7-d3B" secondAttribute="leading" id="GSe-Tq-urk"/>
                         <constraint firstItem="XLZ-0I-Nme" firstAttribute="centerY" secondItem="DQu-x7-d3B" secondAttribute="centerY" constant="10" id="Zhx-KW-Re0"/>

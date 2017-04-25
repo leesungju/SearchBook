@@ -14,8 +14,8 @@
 @property (strong, nonatomic) NSString * country;
 @property (strong, nonatomic) NSString * saleability;
 @property (assign, nonatomic) BOOL isEbook;
-@property (strong, nonatomic) Price * listPrice;
-@property (strong, nonatomic) Price * retailPrice;
+@property (strong, nonatomic) NSDictionary * listPrice;
+@property (strong, nonatomic) NSDictionary * retailPrice;
 @property (strong, nonatomic) NSString * buyLink;
 
 @end

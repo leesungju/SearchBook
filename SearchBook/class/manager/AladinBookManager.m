@@ -49,7 +49,7 @@ NSString *const kAladinApiKey = @"ttbkey=ttbhappy77781956001&Query=";
     
     _elementStack = [NSMutableArray new];
     _elementDepthStack = [NSMutableArray new];
-    NSString * url =  [NSString stringWithFormat:@"%@ttbkey=ttbhappy77781956001&Query=%@%@&MaxResults=40&start=%d&SearchTarget=Book&output=XML", kAladinUrl, str, searchText, pageIndex];
+    NSString * url =  [NSString stringWithFormat:@"%@ttbkey=ttbhappy77781956001&Query=%@%@&MaxResults=40&start=%d&SearchTarget=Book&output=XML&Version=20131101", kAladinUrl, str, searchText, pageIndex];
     Requester * req = [[Requester alloc] initWithUrl:url connectionType:kConnectionType_GET];
     [req sendRequest:completionHandler];
     _completion = completionHandler;
@@ -107,7 +107,9 @@ NSString *const kAladinApiKey = @"ttbkey=ttbhappy77781956001&Query=";
                 item.title = trimmedValue;
             }else if([@"link" isEqualToString:name]){
                 item = [_elementStack lastObject];
-                item.link = trimmedValue;
+                if([trimmedValue rangeOfString:@"http"].location != NSNotFound){
+                    item.link = [NSString stringWithFormat:@"%@&partner=openAPI&start=api", trimmedValue];
+                }
             }else if([@"author" isEqualToString:name]){
                 item = [_elementStack lastObject];
                 item.author = trimmedValue;

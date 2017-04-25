@@ -19,12 +19,7 @@
 
 -(NSString*)md5:(NSString *)str;
 
--(UIImage*)saveToDisk:(UIImage*)image withKey:(NSString*)key;
--(UIImage*)loadFromDisk:(NSString*)key;
-
 -(UIImage*)saveToMemory:(UIImage*)image withKey:(NSString*)key;
 -(UIImage*)loadFromMemory:(NSString*)key;
-
--(UIImage*)makeThumbnail:(UIImage*)image;
 
 @end

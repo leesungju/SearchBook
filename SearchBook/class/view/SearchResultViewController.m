@@ -10,9 +10,13 @@
 #import "Items.h"
 #import "VolumeInfo.h"
 #import "ImageLinks.h"
+#import "SaleInfo.h"
+#import "Price.h"
 #import "AladinItem.h"
+#import "SearchResultTableViewCell.h"
+#import "PreViewController.h"
 
-@interface SearchResultViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+@interface SearchResultViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIViewControllerPreviewingDelegate>
 @property (strong, nonatomic) IBOutlet UIView *topView;
 @property (strong, nonatomic) IBOutlet UIButton *backBtn;
 @property (strong, nonatomic) IBOutlet UITextField *mainTextField;
@@ -35,6 +39,9 @@
 @property (assign, nonatomic) int aladinTotalCount;
 @property (assign, nonatomic) BOOL isAladinPaging;
 
+@property (strong, nonatomic) id previewingContext;
+@property (assign, nonatomic) BOOL isGoogle;
+
 @end
 
 @implementation SearchResultViewController
@@ -56,7 +63,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    if ([self isForceTouchAvailable]) {
+        self.previewingContext = [self registerForPreviewingWithDelegate:self sourceView:self.view];
+    }
+    
 }
 
 - (void)viewDidLayoutSubviews
@@ -76,6 +87,8 @@
     [_mainTextField setRadius:5];
     [_aladinTableView setHidden:YES];
     [_googleTableView setHidden:NO];
+    _isGoogle = YES;
+
     
 }
 
@@ -152,7 +165,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 100;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -160,48 +173,64 @@
     
 
     if(tableView == _googleTableView){
-        static NSString* CellIdentifier = @"UITableViewCell1";
-        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        static NSString* CellIdentifier = @"googleSearchResultTableViewCell";
+        SearchResultTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
         if(cell == nil)
         {
-//                    NSArray *nib  = [[NSBundle mainBundle] loadNibNamed:@"ContactsTableViewCell" owner:self options:nil];
-//                    cell=[nib objectAtIndex:0];
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+                    NSArray *nib  = [[NSBundle mainBundle] loadNibNamed:@"SearchResultTableViewCell" owner:self options:nil];
+                    cell=[nib objectAtIndex:0];
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
          Items * item = [Items new];
          [item setDict:[_googleItemArray objectAtIndex:indexPath.row]];
          VolumeInfo * volumeInfo = [VolumeInfo new];
          [volumeInfo setDict:item.volumeInfo];
          ImageLinks * imagLink = [ImageLinks new];
          [imagLink setDict:[volumeInfo imageLinks]];
+        SaleInfo * saleInfo = [SaleInfo new];
+        [saleInfo setDict:item.saleInfo];
+        Price * retailPrice = [Price new];
+        [retailPrice setDict:saleInfo.retailPrice];
         
-        [cell.textLabel setText:[NSString stringWithFormat:@"%d. %@",(int)indexPath.row+1, volumeInfo.title]];
-        [cell.detailTextLabel setText:[volumeInfo.authors firstObject]];
-        [[ImageCacheManager sharedInstance] loadFromUrl:[NSURL URLWithString:[imagLink smallThumbnail]] callback:^(UIImage *image) {
-            [cell.imageView setImage:image];
+        [[ImageCacheManager sharedInstance] loadFromUrl:[NSURL URLWithString:[imagLink thumbnail]] callback:^(UIImage *image) {
+            [cell.bookImageView setImage:image];
             [cell setNeedsDisplay];
         }];
+    
+        [cell.titleLabel setText:volumeInfo.title];
+        NSString * etc = [NSString stringWithFormat:@"%@ | %@ | %@", [volumeInfo.authors firstObject], ((volumeInfo.publisher.length > 0)? volumeInfo.publisher:@""), ((volumeInfo.publishedDate.length > 0)? volumeInfo.publishedDate:@"")];
+        [cell.etcLabel setText:etc];
+        [cell.valueLabel setText:[Util priceFormat:(int)retailPrice.amount]];
+        [cell setBuyLink:saleInfo.buyLink];
+       
         return cell;
         
     }else if(tableView == _aladinTableView){
-        static NSString* CellIdentifier = @"UITableViewCell2";
-        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        static NSString* CellIdentifier = @"aladinSearchResultTableViewCell";
+        SearchResultTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(cell == nil)
         {
-            //        NSArray *nib  = [[NSBundle mainBundle] loadNibNamed:@"ContactsTableViewCell" owner:self options:nil];
-            //        cell=[nib objectAtIndex:0];
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+                    NSArray *nib  = [[NSBundle mainBundle] loadNibNamed:@"SearchResultTableViewCell" owner:self options:nil];
+                    cell=[nib objectAtIndex:0];
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-        
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+
         AladinItem * item = [_aladinItemArray objectAtIndex:indexPath.row];
-        
-        [cell.textLabel setText:[NSString stringWithFormat:@"%d. %@",(int)indexPath.row+1, [item title]]];
-        [cell.detailTextLabel setText:[item author]];
         [[ImageCacheManager sharedInstance] loadFromUrl:[NSURL URLWithString:[item cover]] callback:^(UIImage *image) {
-            [cell.imageView setImage:image];
+            [cell.bookImageView setImage:image];
             [cell setNeedsDisplay];
         }];
+        
+        [cell.titleLabel setText:item.title];
+        NSString * etc = [NSString stringWithFormat:@"%@ | %@ | %@", item.author, ((item.publisher > 0)? item.publisher:@""), ((item.pubDate.length > 0)? item.pubDate:@"")];
+        [cell.etcLabel setText:etc];
+        [cell.valueLabel setText:[Util priceFormat:[item.priceSales intValue]]];
+        [cell setBuyLink:item.link];
+
         return cell;
         
     }else{
@@ -277,6 +306,7 @@
     
     [_aladinBtn setBackgroundColor:RGB(204, 204, 204)];
     [_googleBtn setBackgroundColor:RGB(149, 149, 149)];
+    _isGoogle = YES;
     
 }
 - (IBAction)aladinAction:(id)sender {
@@ -285,6 +315,74 @@
     
     [_aladinBtn setBackgroundColor:RGB(149, 149, 149)];
     [_googleBtn setBackgroundColor:RGB(204, 204, 204)];
+    _isGoogle = NO;
 }
+
+#pragma mark - UIViewControllerPreviewingDelegate Methods
+
+- (BOOL)isForceTouchAvailable {
+    BOOL isForceTouchAvailable = NO;
+    if ([self.traitCollection respondsToSelector:@selector(forceTouchCapability)]) {
+        isForceTouchAvailable = self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable;
+    }
+    return isForceTouchAvailable;
+}
+
+- (UIViewController *)previewingContext:(id )previewingContext viewControllerForLocation:(CGPoint)location{
+
+    if(_isGoogle){
+        CGPoint cellPostion = [_googleTableView convertPoint:location fromView:self.view];
+        NSIndexPath *path = [_googleTableView indexPathForRowAtPoint:cellPostion];
+        
+        if (path) {
+            Items * item = [Items new];
+            [item setDict:[_googleItemArray objectAtIndex:path.row]];
+            VolumeInfo * volumeInfo = [VolumeInfo new];
+            [volumeInfo setDict:item.volumeInfo];
+            ImageLinks * imagLink = [ImageLinks new];
+            [imagLink setDict:[volumeInfo imageLinks]];
+            SaleInfo * saleInfo = [SaleInfo new];
+            [saleInfo setDict:item.saleInfo];
+            Price * retailPrice = [Price new];
+            [retailPrice setDict:saleInfo.retailPrice];
+            
+//            PreViewController * view = [UIViewController new];
+//            [view.view setBackgroundColor:[UIColor yellowColor]];
+//            
+//            [[ImageCacheManager sharedInstance] loadFromUrl:[NSURL URLWithString:[imagLink thumbnail]] callback:^(UIImage *image) {
+//                [cell.bookImageView setImage:image];
+//                [cell setNeedsDisplay];
+//            }];
+//            
+//            [cell.titleLabel setText:volumeInfo.title];
+//            NSString * etc = [NSString stringWithFormat:@"%@ | %@ | %@", [volumeInfo.authors firstObject], ((volumeInfo.publisher.length > 0)? volumeInfo.publisher:@""), ((volumeInfo.publishedDate.length > 0)? volumeInfo.publishedDate:@"")];
+//            [cell.etcLabel setText:etc];
+//            [cell.valueLabel setText:[Util priceFormat:(int)retailPrice.amount]];
+//            [cell setBuyLink:saleInfo.buyLink];
+            
+            return view;
+        }
+    }else{
+        CGPoint cellPostion = [_aladinTableView convertPoint:location fromView:self.view];
+        NSIndexPath *path = [_aladinTableView indexPathForRowAtPoint:cellPostion];
+        
+        if (path) {
+            SearchResultTableViewCell *tableCell = [_aladinTableView cellForRowAtIndexPath:path];
+            
+            UIViewController * view = [UIViewController new];
+            [view.view setBackgroundColor:[UIColor redColor]];
+            return view;
+        }
+    }
+
+    return nil;
+}
+
+//- (void)previewingContext:(id )previewingContext commitViewController: (UIViewController *)viewControllerToCommit {
+//    
+//    [self.navigationController showViewController:viewControllerToCommit sender:nil];
+//}
+
+
 
 @end

@@ -20,6 +20,10 @@
 		140E22581EA6356C007B2F61 /* SearchResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140E22561EA6356C007B2F61 /* SearchResultViewController.xib */; };
 		1416E8241E93ADBB000C0C0E /* AladinBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1416E8231E93ADBB000C0C0E /* AladinBookManager.m */; };
 		1416E82A1E93B999000C0C0E /* AladinItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1416E8291E93B999000C0C0E /* AladinItem.m */; };
+		143AA1181EAF608600D942BB /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 143AA1161EAF608600D942BB /* SearchResultTableViewCell.m */; };
+		143AA1191EAF608600D942BB /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 143AA1171EAF608600D942BB /* SearchResultTableViewCell.xib */; };
+		143AA11D1EAF7B7D00D942BB /* PreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143AA11B1EAF7B7D00D942BB /* PreViewController.m */; };
+		143AA11E1EAF7B7D00D942BB /* PreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 143AA11C1EAF7B7D00D942BB /* PreViewController.xib */; };
 		14EA73031E8E66B400F902C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EA73021E8E66B400F902C1 /* main.m */; };
 		14EA73111E8E66B400F902C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14EA730F1E8E66B400F902C1 /* LaunchScreen.storyboard */; };
 		14EA731C1E8E66B400F902C1 /* SearchBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EA731B1E8E66B400F902C1 /* SearchBookTests.m */; };
@@ -127,6 +131,12 @@
 		1416E8231E93ADBB000C0C0E /* AladinBookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AladinBookManager.m; sourceTree = "<group>"; };
 		1416E8281E93B999000C0C0E /* AladinItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AladinItem.h; sourceTree = "<group>"; };
 		1416E8291E93B999000C0C0E /* AladinItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AladinItem.m; sourceTree = "<group>"; };
+		143AA1151EAF608600D942BB /* SearchResultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultTableViewCell.h; sourceTree = "<group>"; };
+		143AA1161EAF608600D942BB /* SearchResultTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultTableViewCell.m; sourceTree = "<group>"; };
+		143AA1171EAF608600D942BB /* SearchResultTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultTableViewCell.xib; sourceTree = "<group>"; };
+		143AA11A1EAF7B7D00D942BB /* PreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreViewController.h; sourceTree = "<group>"; };
+		143AA11B1EAF7B7D00D942BB /* PreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreViewController.m; sourceTree = "<group>"; };
+		143AA11C1EAF7B7D00D942BB /* PreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreViewController.xib; sourceTree = "<group>"; };
 		14EA72FE1E8E66B400F902C1 /* SearchBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14EA73021E8E66B400F902C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		14EA73101E8E66B400F902C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -442,6 +452,12 @@
 				140E22541EA6356C007B2F61 /* SearchResultViewController.h */,
 				140E22551EA6356C007B2F61 /* SearchResultViewController.m */,
 				140E22561EA6356C007B2F61 /* SearchResultViewController.xib */,
+				143AA1151EAF608600D942BB /* SearchResultTableViewCell.h */,
+				143AA1161EAF608600D942BB /* SearchResultTableViewCell.m */,
+				143AA1171EAF608600D942BB /* SearchResultTableViewCell.xib */,
+				143AA11A1EAF7B7D00D942BB /* PreViewController.h */,
+				143AA11B1EAF7B7D00D942BB /* PreViewController.m */,
+				143AA11C1EAF7B7D00D942BB /* PreViewController.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -719,12 +735,14 @@
 				14EA73CB1E8E69D100F902C1 /* GoogleService-Info.plist in Resources */,
 				140E22581EA6356C007B2F61 /* SearchResultViewController.xib in Resources */,
 				14EA736D1E8E678D00F902C1 /* MainViewController.xib in Resources */,
+				143AA1191EAF608600D942BB /* SearchResultTableViewCell.xib in Resources */,
 				14EA73AD1E8E67FF00F902C1 /* batch-upload in Resources */,
 				14EA73BC1E8E67FF00F902C1 /* GINInviteResources.bundle in Resources */,
 				14EA73AE1E8E67FF00F902C1 /* dump_syms in Resources */,
 				14EA73B11E8E67FF00F902C1 /* upload-sym-util.bash in Resources */,
 				14EA73B01E8E67FF00F902C1 /* upload-sym in Resources */,
 				14EA73BE1E8E67FF00F902C1 /* GoogleSignIn.bundle in Resources */,
+				143AA11E1EAF7B7D00D942BB /* PreViewController.xib in Resources */,
 				14EA73BD1E8E67FF00F902C1 /* GPPACLPickerResources.bundle in Resources */,
 				14EA73AF1E8E67FF00F902C1 /* extract-keys in Resources */,
 				14EA735D1E8E678D00F902C1 /* Assets.xcassets in Resources */,
@@ -756,6 +774,7 @@
 			files = (
 				14EA73621E8E678D00F902C1 /* Util.m in Sources */,
 				14EA735F1E8E678D00F902C1 /* AppDelegate.m in Sources */,
+				143AA1181EAF608600D942BB /* SearchResultTableViewCell.m in Sources */,
 				140E22571EA6356C007B2F61 /* SearchResultViewController.m in Sources */,
 				14EA73681E8E678D00F902C1 /* PreferenceManager.m in Sources */,
 				140CBDA31E8F5CD400F07119 /* VolumeInfo.m in Sources */,
@@ -771,6 +790,7 @@
 				14EA73C11E8E67FF00F902C1 /* README.md in Sources */,
 				140CBD9D1E8F5CD400F07119 /* ImageLinks.m in Sources */,
 				14EA73C81E8E68E800F902C1 /* LoginViewController.m in Sources */,
+				143AA11D1EAF7B7D00D942BB /* PreViewController.m in Sources */,
 				14EA73031E8E66B400F902C1 /* main.m in Sources */,
 				14EA73611E8E678D00F902C1 /* NSStrUtils.m in Sources */,
 				14EA73D41E8E6FF500F902C1 /* Reachability.m in Sources */,

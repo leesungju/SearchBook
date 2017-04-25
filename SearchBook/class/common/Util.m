@@ -44,4 +44,14 @@
     return [[self deviceUUID] isEqualToString:uuid];
 }
 
++ (NSString*)priceFormat:(int)price
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc]init];
+    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    
+    NSNumber *num = [NSNumber numberWithInt:price];
+    
+    return [NSString stringWithFormat:@"%@ 원", [numberFormatter stringFromNumber:num]];
+}
+
 @end

@@ -30,7 +30,7 @@
         
         // 메모리 캐시 설정
         // @todo : 최대 사이즈와 적정 사이즈 조절 기능 필요
-        mMemCache = [[NSMutableDictionary alloc] initWithCapacity:100];
+        mMemCache = [NSMutableDictionary new];
     }
     
     return self;
@@ -45,28 +45,14 @@
         if (url != nil) {
             NSString* key = [self md5:[url absoluteString]];
             
-            // 메모리 캐시에서 먼저 검색
             UIImage* cachedImage = [self loadFromMemory:key];
             
-            // 메모리 캐시에 없을 경우 디스크 캐시에서 검색
-            if (cachedImage == nil) {
-                cachedImage = [self loadFromDisk:key];
-                // 메모리 캐시에 추가
-                [self saveToMemory:cachedImage withKey:key];
-            }
-            
-            // 캐시된 이미지가 없을 경우 url에서 직접 가져옴
             if (cachedImage != nil) {
                 image = cachedImage;
             } else {
                 NSData * imageData = [NSData dataWithContentsOfURL:url];
                 image = [UIImage imageWithData:imageData];
-                // 썸네일 이미지로 변환
-                image = [self makeThumbnail:image];
-                
-                // 메모리와 디스크 캐시에 추가
                 [self saveToMemory:image withKey:key];
-                [self saveToDisk:image withKey:key];
             }
         }
         
@@ -97,29 +83,6 @@
             ];
 }
 
--(UIImage*)saveToDisk:(UIImage*)image withKey:(NSString*)key {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    
-    NSString *path = [NSString stringWithFormat:@"%@/%@", documentsDirectory, key];
-    
-    UIImage* thumbnail = [self makeThumbnail:image];
-    
-    [UIImagePNGRepresentation(thumbnail) writeToFile:path atomically:YES];
-    
-    return thumbnail;
-}
-
--(UIImage*)loadFromDisk:(NSString*)key {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    
-    NSString *path = [NSString stringWithFormat:@"%@/%@", documentsDirectory, key];
-    
-    UIImage* image = [[UIImage alloc] initWithContentsOfFile:path];
-    return image;
-}
-
 -(UIImage*)loadFromMemory:(NSString *)key {
     if (mMemCache == nil) return nil;
     
@@ -129,28 +92,9 @@
 
 -(UIImage*)saveToMemory:(UIImage*)image withKey:(NSString*)key {
     if (mMemCache == nil) {
-        mMemCache = [[NSMutableDictionary alloc] initWithCapacity:100];
+        mMemCache = [NSMutableDictionary new];
     }
-    
-    UIImage* thumbnail = [self makeThumbnail:image];
-    
-    [mMemCache setObject:thumbnail forKey:key];
-    
-    return thumbnail;
+    [mMemCache setObject:image forKey:key];
+    return image;
 }
-
--(UIImage*)makeThumbnail:(UIImage*)image {
-    // 썸네일을 먼저 만들어서 저장한다.
-    // @todo: 썸네일 이미지 사이즈는 별도 정책에 따를 것!
-    CGSize destSize = CGSizeMake(30, 40);
-    UIGraphicsBeginImageContext(destSize);
-    [image drawInRect:CGRectMake(0, 0, destSize.width, destSize.height)];
-    
-    UIImage* thumbnail = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    return thumbnail;
-}
-
 @end

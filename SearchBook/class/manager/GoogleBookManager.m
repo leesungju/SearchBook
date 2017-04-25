@@ -60,7 +60,7 @@ NSString *const kGoogleApiKey = @"&key=AIzaSyCCFDlvau4uGfFsG87KTlja8Y57f5Y1HWY";
     }
     
     
-    NSString * url =  [NSString stringWithFormat:@"%@%@%@%@&startIndex=%d&maxResults=40&projection=lite&orderBy=newest&&fields=kind,totalItems,items(volumeInfo(title,authors,description,imageLinks),saleInfo(retailPrice,buyLink))%@",kGoogleUrl,searchText,typeStr,downTypeStr,pageIndex,kGoogleApiKey];
+    NSString * url =  [NSString stringWithFormat:@"%@%@%@%@&startIndex=%d&maxResults=40&projection=lite&orderBy=newest&&fields=kind,totalItems,items(volumeInfo(title,authors,publisher,publishedDate,description,imageLinks,previewLink),saleInfo(retailPrice,buyLink))%@",kGoogleUrl,searchText,typeStr,downTypeStr,pageIndex,kGoogleApiKey];
     Requester * req = [[Requester alloc] initWithUrl:url connectionType:kConnectionType_GET];
     [req sendRequest:completionHandler];
 }
