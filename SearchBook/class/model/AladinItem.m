@@ -10,4 +10,12 @@
 
 @implementation AladinItem
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _descript = @"";
+    }
+    return self;
+}
 @end

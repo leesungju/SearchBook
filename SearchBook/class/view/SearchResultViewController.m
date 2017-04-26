@@ -201,7 +201,7 @@
         }];
     
         [cell.titleLabel setText:volumeInfo.title];
-        NSString * etc = [NSString stringWithFormat:@"%@ | %@ | %@", [volumeInfo.authors firstObject], ((volumeInfo.publisher.length > 0)? volumeInfo.publisher:@""), ((volumeInfo.publishedDate.length > 0)? volumeInfo.publishedDate:@"")];
+        NSString * etc = [NSString stringWithFormat:@"%@ | %@ | %@", [volumeInfo.authors firstObject] != nil?  [volumeInfo.authors firstObject]:@"" , ((volumeInfo.publisher.length > 0)? volumeInfo.publisher:@""), ((volumeInfo.publishedDate.length > 0)? volumeInfo.publishedDate:@"")];
         [cell.etcLabel setText:etc];
         [cell.valueLabel setText:[Util priceFormat:(int)retailPrice.amount]];
         [cell setBuyLink:saleInfo.buyLink];
@@ -330,6 +330,7 @@
 
 - (UIViewController *)previewingContext:(id )previewingContext viewControllerForLocation:(CGPoint)location{
 
+    NSMutableDictionary * preViewDict = [NSMutableDictionary new];
     if(_isGoogle){
         CGPoint cellPostion = [_googleTableView convertPoint:location fromView:self.view];
         NSIndexPath *path = [_googleTableView indexPathForRowAtPoint:cellPostion];
@@ -345,20 +346,20 @@
             [saleInfo setDict:item.saleInfo];
             Price * retailPrice = [Price new];
             [retailPrice setDict:saleInfo.retailPrice];
-            
-//            PreViewController * view = [UIViewController new];
-//            [view.view setBackgroundColor:[UIColor yellowColor]];
-//            
-//            [[ImageCacheManager sharedInstance] loadFromUrl:[NSURL URLWithString:[imagLink thumbnail]] callback:^(UIImage *image) {
-//                [cell.bookImageView setImage:image];
-//                [cell setNeedsDisplay];
-//            }];
-//            
-//            [cell.titleLabel setText:volumeInfo.title];
-//            NSString * etc = [NSString stringWithFormat:@"%@ | %@ | %@", [volumeInfo.authors firstObject], ((volumeInfo.publisher.length > 0)? volumeInfo.publisher:@""), ((volumeInfo.publishedDate.length > 0)? volumeInfo.publishedDate:@"")];
-//            [cell.etcLabel setText:etc];
-//            [cell.valueLabel setText:[Util priceFormat:(int)retailPrice.amount]];
-//            [cell setBuyLink:saleInfo.buyLink];
+        
+            PreViewController * view = [PreViewController new];
+            [view setIsPreView:YES];
+            [preViewDict setObject:[imagLink thumbnail] forKey:@"bookImage"];
+            [preViewDict setObject:volumeInfo.title forKey:@"title"];
+            [preViewDict setObject:[NSString stringWithFormat:@"%@ | %@", ([volumeInfo.authors firstObject] != nil?  [volumeInfo.authors firstObject]:@""), ((volumeInfo.publishedDate.length > 0)? volumeInfo.publishedDate:@"")] forKey:@"authors"];
+            [preViewDict setObject:[Util priceFormat:(int)retailPrice.amount] forKey:@"price"];
+            if([item.volumeInfo objectForKey:@"description"]){
+                [preViewDict setObject:[item.volumeInfo objectForKey:@"description"] forKey:@"description"];
+            }
+            [preViewDict setObject:saleInfo.buyLink forKey:@"butLink"];
+            [preViewDict setObject:volumeInfo.previewLink forKey:@"preView"];
+
+            [view setData:preViewDict];
             
             return view;
         }
@@ -366,11 +367,23 @@
         CGPoint cellPostion = [_aladinTableView convertPoint:location fromView:self.view];
         NSIndexPath *path = [_aladinTableView indexPathForRowAtPoint:cellPostion];
         
-        if (path) {
-            SearchResultTableViewCell *tableCell = [_aladinTableView cellForRowAtIndexPath:path];
+        if (path) {            
+            AladinItem * item = [_aladinItemArray objectAtIndex:path.row];
+
+            PreViewController * view = [PreViewController new];
+            [view setIsPreView:YES];
             
-            UIViewController * view = [UIViewController new];
-            [view.view setBackgroundColor:[UIColor redColor]];
+            [preViewDict setObject:[item cover] forKey:@"bookImage"];
+            [preViewDict setObject:item.title forKey:@"title"];
+            [preViewDict setObject:[NSString stringWithFormat:@"%@ | %@", (item.author != nil? item.author:@""), ((item.pubDate.length > 0)? item.pubDate:@"")] forKey:@"authors"];
+            [preViewDict setObject:[Util priceFormat:[item.priceSales intValue]] forKey:@"price"];
+            if(item.descript){
+                [preViewDict setObject:item.descript forKey:@"description"];
+            }
+            [preViewDict setObject:item.link forKey:@"butLink"];
+
+            [view setData:preViewDict];
+            
             return view;
         }
     }
@@ -378,10 +391,13 @@
     return nil;
 }
 
-//- (void)previewingContext:(id )previewingContext commitViewController: (UIViewController *)viewControllerToCommit {
-//    
-//    [self.navigationController showViewController:viewControllerToCommit sender:nil];
-//}
+- (void)previewingContext:(id )previewingContext commitViewController: (UIViewController *)viewControllerToCommit {
+    
+    if([viewControllerToCommit isKindOfClass:[PreViewController class]]){
+        [((PreViewController*)viewControllerToCommit) setIsPreView:NO];
+    }
+    [self.navigationController showViewController:viewControllerToCommit sender:nil];
+}
 
 
 

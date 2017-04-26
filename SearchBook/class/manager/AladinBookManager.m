@@ -118,7 +118,9 @@ NSString *const kAladinApiKey = @"ttbkey=ttbhappy77781956001&Query=";
                 item.pubDate = trimmedValue;
             }else if([@"description" isEqualToString:name]){
                 item = [_elementStack lastObject];
-                item.descript = trimmedValue;
+                NSMutableString * temp = [[NSMutableString alloc] initWithString:item.descript];
+                [temp appendString:trimmedValue];
+                item.descript = temp;
             }else if([@"creator" isEqualToString:name]){
                 item = [_elementStack lastObject];
                 item.creator = trimmedValue;
