@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AladinItem : NSObject
+@interface AladinItem : JsonObject
 @property (strong, nonatomic) NSString * itemId;
 @property (strong, nonatomic) NSString * title;
 @property (strong, nonatomic) NSString * link;
@@ -23,5 +23,9 @@
 @property (strong, nonatomic) NSString * mileage;
 @property (strong, nonatomic) NSString * cover;
 @property (strong, nonatomic) NSString * publisher;
+
+@property (strong, nonatomic) NSString *wordIndex;
+-(void)setdata;
+-(NSString*)getWordIndex;
 
 @end

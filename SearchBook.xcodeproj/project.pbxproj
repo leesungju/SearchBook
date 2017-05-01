@@ -16,14 +16,22 @@
 		140CBDA21E8F5CD400F07119 /* SaleInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 140CBD981E8F5CD400F07119 /* SaleInfo.m */; };
 		140CBDA31E8F5CD400F07119 /* VolumeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 140CBD9A1E8F5CD400F07119 /* VolumeInfo.m */; };
 		140CBDA61E8F711100F07119 /* ImageCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 140CBDA51E8F711100F07119 /* ImageCacheManager.m */; };
-		140E22571EA6356C007B2F61 /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140E22551EA6356C007B2F61 /* SearchResultViewController.m */; };
-		140E22581EA6356C007B2F61 /* SearchResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140E22561EA6356C007B2F61 /* SearchResultViewController.xib */; };
+		141030621EB3634000850C67 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 141030521EB3634000850C67 /* BaseViewController.m */; };
+		141030631EB3634000850C67 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 141030541EB3634000850C67 /* MainViewController.m */; };
+		141030641EB3634000850C67 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141030551EB3634000850C67 /* MainViewController.xib */; };
+		141030651EB3634000850C67 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 141030571EB3634000850C67 /* SettingViewController.m */; };
+		141030661EB3634000850C67 /* PreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410305A1EB3634000850C67 /* PreViewController.m */; };
+		141030671EB3634000850C67 /* PreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1410305B1EB3634000850C67 /* PreViewController.xib */; };
+		141030681EB3634000850C67 /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410305D1EB3634000850C67 /* SearchResultTableViewCell.m */; };
+		141030691EB3634000850C67 /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1410305E1EB3634000850C67 /* SearchResultTableViewCell.xib */; };
+		1410306A1EB3634000850C67 /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 141030601EB3634000850C67 /* SearchResultViewController.m */; };
+		1410306B1EB3634000850C67 /* SearchResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141030611EB3634000850C67 /* SearchResultViewController.xib */; };
+		1410307A1EB370FC00850C67 /* MyBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 141030781EB370FC00850C67 /* MyBookViewController.m */; };
+		1410307B1EB370FC00850C67 /* MyBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141030791EB370FC00850C67 /* MyBookViewController.xib */; };
+		1410307E1EB3736A00850C67 /* BookInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410307D1EB3736A00850C67 /* BookInfo.m */; };
+		14111BB31EB2FD2D00979CC6 /* SearchText.m in Sources */ = {isa = PBXBuildFile; fileRef = 14111BB21EB2FD2D00979CC6 /* SearchText.m */; };
 		1416E8241E93ADBB000C0C0E /* AladinBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1416E8231E93ADBB000C0C0E /* AladinBookManager.m */; };
 		1416E82A1E93B999000C0C0E /* AladinItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1416E8291E93B999000C0C0E /* AladinItem.m */; };
-		143AA1181EAF608600D942BB /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 143AA1161EAF608600D942BB /* SearchResultTableViewCell.m */; };
-		143AA1191EAF608600D942BB /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 143AA1171EAF608600D942BB /* SearchResultTableViewCell.xib */; };
-		143AA11D1EAF7B7D00D942BB /* PreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143AA11B1EAF7B7D00D942BB /* PreViewController.m */; };
-		143AA11E1EAF7B7D00D942BB /* PreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 143AA11C1EAF7B7D00D942BB /* PreViewController.xib */; };
 		14EA73031E8E66B400F902C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EA73021E8E66B400F902C1 /* main.m */; };
 		14EA73111E8E66B400F902C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14EA730F1E8E66B400F902C1 /* LaunchScreen.storyboard */; };
 		14EA731C1E8E66B400F902C1 /* SearchBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EA731B1E8E66B400F902C1 /* SearchBookTests.m */; };
@@ -41,9 +49,6 @@
 		14EA73681E8E678D00F902C1 /* PreferenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EA73501E8E678D00F902C1 /* PreferenceManager.m */; };
 		14EA73691E8E678D00F902C1 /* StorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EA73521E8E678D00F902C1 /* StorageManager.m */; };
 		14EA736A1E8E678D00F902C1 /* AutoCompleteMng.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EA73551E8E678D00F902C1 /* AutoCompleteMng.m */; };
-		14EA736B1E8E678D00F902C1 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EA73591E8E678D00F902C1 /* BaseViewController.m */; };
-		14EA736C1E8E678D00F902C1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EA735B1E8E678D00F902C1 /* MainViewController.m */; };
-		14EA736D1E8E678D00F902C1 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14EA735C1E8E678D00F902C1 /* MainViewController.xib */; };
 		14EA73A21E8E67FF00F902C1 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14EA73721E8E67FF00F902C1 /* GoogleMobileAds.framework */; };
 		14EA73A31E8E67FF00F902C1 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14EA73741E8E67FF00F902C1 /* FirebaseAnalytics.framework */; };
 		14EA73A41E8E67FF00F902C1 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14EA73751E8E67FF00F902C1 /* FirebaseCore.framework */; };
@@ -79,8 +84,6 @@
 		14EA73C21E8E67FF00F902C1 /* FirebaseRemoteConfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14EA739D1E8E67FF00F902C1 /* FirebaseRemoteConfig.framework */; };
 		14EA73C31E8E67FF00F902C1 /* FirebaseStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14EA739F1E8E67FF00F902C1 /* FirebaseStorage.framework */; };
 		14EA73C41E8E67FF00F902C1 /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14EA73A01E8E67FF00F902C1 /* GTMSessionFetcher.framework */; };
-		14EA73C81E8E68E800F902C1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EA73C61E8E68E800F902C1 /* LoginViewController.m */; };
-		14EA73C91E8E68E800F902C1 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14EA73C71E8E68E800F902C1 /* LoginViewController.xib */; };
 		14EA73CB1E8E69D100F902C1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14EA73CA1E8E69D100F902C1 /* GoogleService-Info.plist */; };
 		14EA73D31E8E6FF500F902C1 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EA73CE1E8E6FF500F902C1 /* NetworkManager.m */; };
 		14EA73D41E8E6FF500F902C1 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EA73D01E8E6FF500F902C1 /* Reachability.m */; };
@@ -124,19 +127,33 @@
 		140CBD9A1E8F5CD400F07119 /* VolumeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeInfo.m; sourceTree = "<group>"; };
 		140CBDA41E8F711100F07119 /* ImageCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCacheManager.h; sourceTree = "<group>"; };
 		140CBDA51E8F711100F07119 /* ImageCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCacheManager.m; sourceTree = "<group>"; };
-		140E22541EA6356C007B2F61 /* SearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
-		140E22551EA6356C007B2F61 /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
-		140E22561EA6356C007B2F61 /* SearchResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultViewController.xib; sourceTree = "<group>"; };
+		141030511EB3634000850C67 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		141030521EB3634000850C67 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		141030531EB3634000850C67 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		141030541EB3634000850C67 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		141030551EB3634000850C67 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		141030561EB3634000850C67 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		141030571EB3634000850C67 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		141030591EB3634000850C67 /* PreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreViewController.h; sourceTree = "<group>"; };
+		1410305A1EB3634000850C67 /* PreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreViewController.m; sourceTree = "<group>"; };
+		1410305B1EB3634000850C67 /* PreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreViewController.xib; sourceTree = "<group>"; };
+		1410305C1EB3634000850C67 /* SearchResultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultTableViewCell.h; sourceTree = "<group>"; };
+		1410305D1EB3634000850C67 /* SearchResultTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultTableViewCell.m; sourceTree = "<group>"; };
+		1410305E1EB3634000850C67 /* SearchResultTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultTableViewCell.xib; sourceTree = "<group>"; };
+		1410305F1EB3634000850C67 /* SearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
+		141030601EB3634000850C67 /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
+		141030611EB3634000850C67 /* SearchResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultViewController.xib; sourceTree = "<group>"; };
+		141030771EB370FC00850C67 /* MyBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBookViewController.h; sourceTree = "<group>"; };
+		141030781EB370FC00850C67 /* MyBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBookViewController.m; sourceTree = "<group>"; };
+		141030791EB370FC00850C67 /* MyBookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyBookViewController.xib; sourceTree = "<group>"; };
+		1410307C1EB3736A00850C67 /* BookInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookInfo.h; sourceTree = "<group>"; };
+		1410307D1EB3736A00850C67 /* BookInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookInfo.m; sourceTree = "<group>"; };
+		14111BB11EB2FD2D00979CC6 /* SearchText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchText.h; sourceTree = "<group>"; };
+		14111BB21EB2FD2D00979CC6 /* SearchText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchText.m; sourceTree = "<group>"; };
 		1416E8221E93ADBA000C0C0E /* AladinBookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AladinBookManager.h; sourceTree = "<group>"; };
 		1416E8231E93ADBB000C0C0E /* AladinBookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AladinBookManager.m; sourceTree = "<group>"; };
 		1416E8281E93B999000C0C0E /* AladinItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AladinItem.h; sourceTree = "<group>"; };
 		1416E8291E93B999000C0C0E /* AladinItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AladinItem.m; sourceTree = "<group>"; };
-		143AA1151EAF608600D942BB /* SearchResultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultTableViewCell.h; sourceTree = "<group>"; };
-		143AA1161EAF608600D942BB /* SearchResultTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultTableViewCell.m; sourceTree = "<group>"; };
-		143AA1171EAF608600D942BB /* SearchResultTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultTableViewCell.xib; sourceTree = "<group>"; };
-		143AA11A1EAF7B7D00D942BB /* PreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreViewController.h; sourceTree = "<group>"; };
-		143AA11B1EAF7B7D00D942BB /* PreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreViewController.m; sourceTree = "<group>"; };
-		143AA11C1EAF7B7D00D942BB /* PreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreViewController.xib; sourceTree = "<group>"; };
 		14EA72FE1E8E66B400F902C1 /* SearchBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14EA73021E8E66B400F902C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		14EA73101E8E66B400F902C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -173,11 +190,6 @@
 		14EA73521E8E678D00F902C1 /* StorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageManager.m; sourceTree = "<group>"; };
 		14EA73541E8E678D00F902C1 /* AutoCompleteMng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompleteMng.h; sourceTree = "<group>"; };
 		14EA73551E8E678D00F902C1 /* AutoCompleteMng.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCompleteMng.m; sourceTree = "<group>"; };
-		14EA73581E8E678D00F902C1 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
-		14EA73591E8E678D00F902C1 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		14EA735A1E8E678D00F902C1 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		14EA735B1E8E678D00F902C1 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		14EA735C1E8E678D00F902C1 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		14EA736E1E8E679A00F902C1 /* SearchBook.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBook.pch; sourceTree = "<group>"; };
 		14EA73721E8E67FF00F902C1 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		14EA73741E8E67FF00F902C1 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAnalytics.framework; sourceTree = "<group>"; };
@@ -216,9 +228,6 @@
 		14EA739F1E8E67FF00F902C1 /* FirebaseStorage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseStorage.framework; sourceTree = "<group>"; };
 		14EA73A01E8E67FF00F902C1 /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = "<group>"; };
 		14EA73A11E8E67FF00F902C1 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		14EA73C51E8E68E800F902C1 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		14EA73C61E8E68E800F902C1 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		14EA73C71E8E68E800F902C1 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		14EA73CA1E8E69D100F902C1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		14EA73CD1E8E6FF500F902C1 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		14EA73CE1E8E6FF500F902C1 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
@@ -279,6 +288,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		141030501EB3634000850C67 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				141030511EB3634000850C67 /* BaseViewController.h */,
+				141030521EB3634000850C67 /* BaseViewController.m */,
+				141030531EB3634000850C67 /* MainViewController.h */,
+				141030541EB3634000850C67 /* MainViewController.m */,
+				141030551EB3634000850C67 /* MainViewController.xib */,
+				141030561EB3634000850C67 /* SettingViewController.h */,
+				141030571EB3634000850C67 /* SettingViewController.m */,
+				141030581EB3634000850C67 /* search */,
+				141030771EB370FC00850C67 /* MyBookViewController.h */,
+				141030781EB370FC00850C67 /* MyBookViewController.m */,
+				141030791EB370FC00850C67 /* MyBookViewController.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		141030581EB3634000850C67 /* search */ = {
+			isa = PBXGroup;
+			children = (
+				141030591EB3634000850C67 /* PreViewController.h */,
+				1410305A1EB3634000850C67 /* PreViewController.m */,
+				1410305B1EB3634000850C67 /* PreViewController.xib */,
+				1410305C1EB3634000850C67 /* SearchResultTableViewCell.h */,
+				1410305D1EB3634000850C67 /* SearchResultTableViewCell.m */,
+				1410305E1EB3634000850C67 /* SearchResultTableViewCell.xib */,
+				1410305F1EB3634000850C67 /* SearchResultViewController.h */,
+				141030601EB3634000850C67 /* SearchResultViewController.m */,
+				141030611EB3634000850C67 /* SearchResultViewController.xib */,
+			);
+			path = search;
+			sourceTree = "<group>";
+		};
 		14EA72F51E8E66B300F902C1 = {
 			isa = PBXGroup;
 			children = (
@@ -343,12 +386,12 @@
 		14EA73381E8E678D00F902C1 /* class */ = {
 			isa = PBXGroup;
 			children = (
+				141030501EB3634000850C67 /* view */,
 				14EA73391E8E678D00F902C1 /* AppDelegate.h */,
 				14EA733A1E8E678D00F902C1 /* AppDelegate.m */,
 				14EA733B1E8E678D00F902C1 /* common */,
 				14EA734A1E8E678D00F902C1 /* manager */,
 				14EA73561E8E678D00F902C1 /* model */,
-				14EA73571E8E678D00F902C1 /* view */,
 			);
 			path = class;
 			sourceTree = "<group>";
@@ -434,32 +477,12 @@
 				140CBD9A1E8F5CD400F07119 /* VolumeInfo.m */,
 				1416E8281E93B999000C0C0E /* AladinItem.h */,
 				1416E8291E93B999000C0C0E /* AladinItem.m */,
+				14111BB11EB2FD2D00979CC6 /* SearchText.h */,
+				14111BB21EB2FD2D00979CC6 /* SearchText.m */,
+				1410307C1EB3736A00850C67 /* BookInfo.h */,
+				1410307D1EB3736A00850C67 /* BookInfo.m */,
 			);
 			path = model;
-			sourceTree = "<group>";
-		};
-		14EA73571E8E678D00F902C1 /* view */ = {
-			isa = PBXGroup;
-			children = (
-				14EA73C51E8E68E800F902C1 /* LoginViewController.h */,
-				14EA73C61E8E68E800F902C1 /* LoginViewController.m */,
-				14EA73C71E8E68E800F902C1 /* LoginViewController.xib */,
-				14EA73581E8E678D00F902C1 /* BaseViewController.h */,
-				14EA73591E8E678D00F902C1 /* BaseViewController.m */,
-				14EA735A1E8E678D00F902C1 /* MainViewController.h */,
-				14EA735B1E8E678D00F902C1 /* MainViewController.m */,
-				14EA735C1E8E678D00F902C1 /* MainViewController.xib */,
-				140E22541EA6356C007B2F61 /* SearchResultViewController.h */,
-				140E22551EA6356C007B2F61 /* SearchResultViewController.m */,
-				140E22561EA6356C007B2F61 /* SearchResultViewController.xib */,
-				143AA1151EAF608600D942BB /* SearchResultTableViewCell.h */,
-				143AA1161EAF608600D942BB /* SearchResultTableViewCell.m */,
-				143AA1171EAF608600D942BB /* SearchResultTableViewCell.xib */,
-				143AA11A1EAF7B7D00D942BB /* PreViewController.h */,
-				143AA11B1EAF7B7D00D942BB /* PreViewController.m */,
-				143AA11C1EAF7B7D00D942BB /* PreViewController.xib */,
-			);
-			path = view;
 			sourceTree = "<group>";
 		};
 		14EA736F1E8E67FF00F902C1 /* Frameworks */ = {
@@ -733,20 +756,20 @@
 				14EA73C01E8E67FF00F902C1 /* NOTICES in Resources */,
 				14EA73111E8E66B400F902C1 /* LaunchScreen.storyboard in Resources */,
 				14EA73CB1E8E69D100F902C1 /* GoogleService-Info.plist in Resources */,
-				140E22581EA6356C007B2F61 /* SearchResultViewController.xib in Resources */,
-				14EA736D1E8E678D00F902C1 /* MainViewController.xib in Resources */,
-				143AA1191EAF608600D942BB /* SearchResultTableViewCell.xib in Resources */,
 				14EA73AD1E8E67FF00F902C1 /* batch-upload in Resources */,
 				14EA73BC1E8E67FF00F902C1 /* GINInviteResources.bundle in Resources */,
+				141030641EB3634000850C67 /* MainViewController.xib in Resources */,
+				141030691EB3634000850C67 /* SearchResultTableViewCell.xib in Resources */,
+				1410307B1EB370FC00850C67 /* MyBookViewController.xib in Resources */,
+				141030671EB3634000850C67 /* PreViewController.xib in Resources */,
 				14EA73AE1E8E67FF00F902C1 /* dump_syms in Resources */,
 				14EA73B11E8E67FF00F902C1 /* upload-sym-util.bash in Resources */,
 				14EA73B01E8E67FF00F902C1 /* upload-sym in Resources */,
 				14EA73BE1E8E67FF00F902C1 /* GoogleSignIn.bundle in Resources */,
-				143AA11E1EAF7B7D00D942BB /* PreViewController.xib in Resources */,
 				14EA73BD1E8E67FF00F902C1 /* GPPACLPickerResources.bundle in Resources */,
+				1410306B1EB3634000850C67 /* SearchResultViewController.xib in Resources */,
 				14EA73AF1E8E67FF00F902C1 /* extract-keys in Resources */,
 				14EA735D1E8E678D00F902C1 /* Assets.xcassets in Resources */,
-				14EA73C91E8E68E800F902C1 /* LoginViewController.xib in Resources */,
 				14EA73B21E8E67FF00F902C1 /* upload-sym.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -774,26 +797,27 @@
 			files = (
 				14EA73621E8E678D00F902C1 /* Util.m in Sources */,
 				14EA735F1E8E678D00F902C1 /* AppDelegate.m in Sources */,
-				143AA1181EAF608600D942BB /* SearchResultTableViewCell.m in Sources */,
-				140E22571EA6356C007B2F61 /* SearchResultViewController.m in Sources */,
 				14EA73681E8E678D00F902C1 /* PreferenceManager.m in Sources */,
 				140CBDA31E8F5CD400F07119 /* VolumeInfo.m in Sources */,
 				1416E82A1E93B999000C0C0E /* AladinItem.m in Sources */,
 				140CBDA11E8F5CD400F07119 /* ReadingModes.m in Sources */,
 				140CBD9B1E8F5CD400F07119 /* AccessInfo.m in Sources */,
 				14EA73D81E8E742800F902C1 /* GoogleBookManager.m in Sources */,
+				141030661EB3634000850C67 /* PreViewController.m in Sources */,
+				14111BB31EB2FD2D00979CC6 /* SearchText.m in Sources */,
 				14EA73691E8E678D00F902C1 /* StorageManager.m in Sources */,
+				1410306A1EB3634000850C67 /* SearchResultViewController.m in Sources */,
 				14EA736A1E8E678D00F902C1 /* AutoCompleteMng.m in Sources */,
 				140CBD9C1E8F5CD400F07119 /* BookType.m in Sources */,
-				14EA736B1E8E678D00F902C1 /* BaseViewController.m in Sources */,
 				14EA73D51E8E6FF500F902C1 /* Requester.m in Sources */,
 				14EA73C11E8E67FF00F902C1 /* README.md in Sources */,
 				140CBD9D1E8F5CD400F07119 /* ImageLinks.m in Sources */,
-				14EA73C81E8E68E800F902C1 /* LoginViewController.m in Sources */,
-				143AA11D1EAF7B7D00D942BB /* PreViewController.m in Sources */,
 				14EA73031E8E66B400F902C1 /* main.m in Sources */,
 				14EA73611E8E678D00F902C1 /* NSStrUtils.m in Sources */,
+				141030621EB3634000850C67 /* BaseViewController.m in Sources */,
 				14EA73D41E8E6FF500F902C1 /* Reachability.m in Sources */,
+				141030631EB3634000850C67 /* MainViewController.m in Sources */,
+				141030651EB3634000850C67 /* SettingViewController.m in Sources */,
 				14EA73631E8E678D00F902C1 /* UIImage+Common.m in Sources */,
 				140CBDA21E8F5CD400F07119 /* SaleInfo.m in Sources */,
 				140CBD9E1E8F5CD400F07119 /* Items.m in Sources */,
@@ -802,11 +826,13 @@
 				14EA73671E8E678D00F902C1 /* GUIManager.m in Sources */,
 				140CBDA01E8F5CD400F07119 /* Price.m in Sources */,
 				14EA73661E8E678D00F902C1 /* FCMManager.m in Sources */,
-				14EA736C1E8E678D00F902C1 /* MainViewController.m in Sources */,
 				1416E8241E93ADBB000C0C0E /* AladinBookManager.m in Sources */,
+				1410307A1EB370FC00850C67 /* MyBookViewController.m in Sources */,
 				14EA73D31E8E6FF500F902C1 /* NetworkManager.m in Sources */,
 				140CBDA61E8F711100F07119 /* ImageCacheManager.m in Sources */,
 				14EA73651E8E678D00F902C1 /* UIView+Common.m in Sources */,
+				1410307E1EB3736A00850C67 /* BookInfo.m in Sources */,
+				141030681EB3634000850C67 /* SearchResultTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

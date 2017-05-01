@@ -10,6 +10,6 @@
 
 @interface SearchResultViewController : BaseViewController
 
-- (void)search:(NSString*)str page:(int)page;
+- (void)search:(NSString*)str page:(int)page type:(kEBookType)type;
 
 @end

@@ -12,7 +12,7 @@
 @interface GUIManager ()
 
 @property (nonatomic, copy) void (^popupCompletion)(NSDictionary* dict);
-
+@property (strong, nonatomic) SettingViewController * settingViewController;
 @end
 
 @implementation GUIManager
@@ -35,78 +35,55 @@
     return self;
 }
 
-- (void)moveToHome
+- (void)setSetting:(NSArray*)array delegate:(id)delegate
 {
-//    [_mainNavigationController popToRootViewControllerAnimated:YES];
-//    if(_contactsViewController != nil){
-//        [_contactsViewController.view removeFromSuperview];
-//        _contactsViewController.view = nil;
-//        [_contactsViewController removeFromParentViewController];
-//        _contactsViewController = nil;
-//    }
-//    if(_preachViewController !=nil){
-//        [_preachViewController.view removeFromSuperview];
-//        _preachViewController.view = nil;
-//        [_preachViewController removeFromParentViewController];
-//        _preachViewController = nil;
-//    }
-//    if(_noticeViewController !=nil){
-//        [_noticeViewController.view removeFromSuperview];
-//        _noticeViewController.view = nil;
-//        [_noticeViewController removeFromParentViewController];
-//        _noticeViewController = nil;
-//    }
+    if(_settingViewController == nil){
+        _settingViewController = [[SettingViewController alloc] initWithFrame:[_mainNavigationController.view bounds]];
+    }
+    
+    NSArray *titleList = array;
+    NSArray *imageList = @[[UIImage imageWithColor:[UIColor clearColor]], [UIImage imageWithColor:[UIColor clearColor]], [UIImage imageWithColor:[UIColor clearColor]],[UIImage imageWithColor:[UIColor clearColor]], [UIImage imageWithColor:[UIColor clearColor]]];
+    
+    if([array count] > 0){
+        _settingViewController = [[GUIManager sharedInstance] settingViewController];
+        [_settingViewController setDelegate:delegate];
+        [_settingViewController setMenuButton:titleList images:imageList];
+    }
+    [_mainNavigationController.view addSubview:_settingViewController.view];
+    [_mainNavigationController addChildViewController:_settingViewController];
+    [_settingViewController.view setHidden:YES];
+    _isShowSetting = NO;
 }
 
-//- (void)moveToAddress
-//{
-//    [self removeView];
-//    if(_contactsViewController == nil){
-//        _contactsViewController = [ContactsViewController new];
-//        [self moveToController:_contactsViewController animation:YES];
-//    }
-//}
-//
-//- (void)moveToPreach
-//{
-//    [self removeView];
-//    if(_preachViewController == nil){
-//        _preachViewController = [PreachViewController new];
-//        [self moveToController:_preachViewController animation:YES];
-//    }
-//}
-//
-//- (void)moveToNotice
-//{
-//    [self removeView];
-//    if(_noticeViewController == nil){
-//        _noticeViewController = [NoticeViewController new];
-//        [self moveToController:_noticeViewController animation:YES];
-//    }
-//}
-//
-//- (void)removeView
-//{
-//    [self backControllerWithAnimation:NO];
-//    if(_contactsViewController != nil){
-//        [_contactsViewController.view removeFromSuperview];
-//        _contactsViewController.view = nil;
-//        [_contactsViewController removeFromParentViewController];
-//        _contactsViewController = nil;
-//    }
-//    if(_preachViewController !=nil){
-//        [_preachViewController.view removeFromSuperview];
-//        _preachViewController.view = nil;
-//        [_preachViewController removeFromParentViewController];
-//        _preachViewController = nil;
-//    }
-//    if(_noticeViewController !=nil){
-//        [_noticeViewController.view removeFromSuperview];
-//        _noticeViewController.view = nil;
-//        [_noticeViewController removeFromParentViewController];
-//        _noticeViewController = nil;
-//    }
-//}
+- (void)showSetting
+{
+    _isShowSetting =YES;
+    [_settingViewController.view setHidden:NO];
+    [_settingViewController showMenu];
+}
+
+- (void)hideSetting
+{
+    _isShowSetting = NO;
+    [_settingViewController.view setHidden:YES];
+    [_settingViewController dismissMenu];
+}
+
+- (void)removeSetting
+{
+    if(_settingViewController != nil){
+        [_settingViewController.view removeFromSuperview];
+        _settingViewController.view = nil;
+        [_settingViewController removeFromParentViewController];
+        _settingViewController = nil;
+    }
+}
+
+- (void)moveToHome
+{
+    [self removeSetting];
+    [_mainNavigationController popToRootViewControllerAnimated:YES];
+}
 
 - (void)moveToController:(UIViewController*)controller animation:(BOOL)isAnimation
 {
@@ -123,6 +100,7 @@
 
 - (void)backControllerWithAnimation:(BOOL)isAnimation
 {
+    [self removeSetting];
     [_mainNavigationController popViewControllerAnimated:isAnimation];
 }
 
@@ -154,4 +132,21 @@
     [controller.view removeFromSuperview];
 }
 
+- (void)showAlert:(NSString*)message viewCon:(UIViewController*)viewCon handler:(void (^)(UIAlertAction *action))handler
+{
+    UIAlertController *av = [UIAlertController alertControllerWithTitle:@"알림" message:message preferredStyle:UIAlertControllerStyleAlert];
+    [av addAction:[UIAlertAction actionWithTitle:@"확인" style:UIAlertActionStyleCancel handler:handler]];
+    [viewCon presentViewController:av animated:YES completion:nil];
+    
+}
+
+- (void)showComfirm:(NSString*)message viewCon:(UIViewController*)viewCon handler:(void (^)(UIAlertAction *action))handler cancelHandler:(void (^)(UIAlertAction *action))cancelHandler
+{
+    UIAlertController *av = [UIAlertController alertControllerWithTitle:@"알림" message:message preferredStyle:UIAlertControllerStyleAlert];
+    [av addAction:[UIAlertAction actionWithTitle:@"확인" style:UIAlertActionStyleDefault handler:handler]];
+    [av addAction:[UIAlertAction actionWithTitle:@"취소" style:UIAlertActionStyleCancel handler:cancelHandler]];
+    
+    [viewCon presentViewController:av animated:YES completion:nil];
+    
+}
 @end

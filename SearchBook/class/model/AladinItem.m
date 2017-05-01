@@ -18,4 +18,15 @@
     }
     return self;
 }
+
+- (void)setdata
+{
+    _wordIndex = [NSStrUtils getJasoLetter:_title];
+}
+
+- (NSString*)getWordIndex
+{
+    return _wordIndex;
+}
+
 @end

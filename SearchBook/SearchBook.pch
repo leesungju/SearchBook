@@ -30,10 +30,16 @@
     #import "GoogleBookManager.h"
     #import "ImageCacheManager.h"
     #import "AladinBookManager.h"
+    #import "AutoCompleteMng.h"
 
     #import "JsonObject.h"
+    #import "SearchText.h"
+    #import "Items.h"
+    #import "VolumeInfo.h"
+    #import "AladinItem.h"
 
     #import "BaseViewController.h"
+    #import "SettingViewController.h"
 
 #endif
 

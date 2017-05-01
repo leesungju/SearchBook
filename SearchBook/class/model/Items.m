@@ -10,4 +10,15 @@
 
 @implementation Items
 
+- (void)setdata
+{
+    _wordIndex = [NSStrUtils getJasoLetter:[_volumeInfo objectForKey:@"title"]];
+}
+
+- (NSString*)getWordIndex
+{
+    return _wordIndex;
+}
+
+
 @end

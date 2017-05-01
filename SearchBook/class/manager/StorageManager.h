@@ -12,9 +12,6 @@
 
 + (StorageManager *)sharedInstance;
 
-- (void)saveUser:(NSString*)josnString forKey:(NSString*)key;
-- (void)loadUserKey:(NSString*)key WithBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(void (^)(NSError* error))cancelBlock;
-
-- (void)loadPermissionforKey:(NSString*)key WithBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(void (^)(NSError* error))cancelBlock;
-
+- (void)saveSearchText:(NSDictionary*)obj forKey:(NSString*)key;
+- (void)loadSearchTextWithBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(nullable void (^)(NSError* error))cancelBlockl;
 @end

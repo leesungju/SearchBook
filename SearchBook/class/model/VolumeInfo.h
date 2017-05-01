@@ -23,4 +23,5 @@
 @property (strong, nonatomic) NSString * previewLink;
 @property (strong, nonatomic) NSString * infoLink;
 
+
 @end

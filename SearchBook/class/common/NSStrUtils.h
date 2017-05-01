@@ -19,4 +19,5 @@
 
 +(NSString*)urlEncoding:(NSString*)str;
 +(NSString*)urlDecoding:(NSString*)str;
++(NSString*)HtmlToText:(NSString*)htmlString;
 @end

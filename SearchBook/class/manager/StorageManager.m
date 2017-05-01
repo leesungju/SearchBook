@@ -30,21 +30,46 @@
     return self;
 }
 
-- (void)saveUser:(NSString*)josnString forKey:(NSString*)key
+
+- (void)saveSearchText:(NSDictionary*)obj forKey:(NSString*)key
 {
-    [[[_ref child:@"users"] child:key] setValue:josnString];
+    [_ref runTransactionBlock:^FIRTransactionResult * _Nonnull(FIRMutableData * _Nonnull currentData) {
+        NSMutableDictionary *post = currentData.value;
+        if (!post || [post isEqual:[NSNull null]]) {
+            return [FIRTransactionResult successWithValue:currentData];
+        }
+        
+        NSMutableDictionary *searchText = [post objectForKey:@"searchText"];
+        if (!searchText) {
+            searchText = [NSMutableDictionary new];
+        }
+        
+        int count = 0;;
+        if([searchText objectForKey:key]){
+            count = [[[searchText objectForKey:key] objectForKey:@"count"] intValue];
+            count +=1;
+            post[@"searchText"][key][@"count"] = [NSNumber numberWithInt:count];
+        }else{
+            [searchText setValue:obj forKey:key];
+            post[@"searchText"] = searchText;
+            post[@"searchText"][key][@"count"] = [NSNumber numberWithInt:1];
+        }
+        [currentData setValue:post];
+        return [FIRTransactionResult successWithValue:currentData];
+    } andCompletionBlock:^(NSError * _Nullable error,
+                           BOOL committed,
+                           FIRDataSnapshot * _Nullable snapshot) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 
-- (void)loadUserKey:(NSString*)key WithBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(nullable void (^)(NSError* error))cancelBlock
-{
-    [[[_ref child:@"users"] child:key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:block withCancelBlock:cancelBlock];
-}
 
-- (void)loadPermissionforKey:(NSString*)key WithBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(nullable void (^)(NSError* error))cancelBlock
+- (void)loadSearchTextWithBlock:(void (^)(FIRDataSnapshot *snapshot))block withCancelBlock:(nullable void (^)(NSError* error))cancelBlock
 {
-    [[[_ref child:@"permission"] child:key] observeSingleEventOfType:FIRDataEventTypeValue withBlock:block withCancelBlock:cancelBlock];
+    [[_ref child:@"searchText"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:block withCancelBlock:cancelBlock];
 }
-
 
 
 @end

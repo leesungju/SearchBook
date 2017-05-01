@@ -16,4 +16,10 @@
 @property (strong, nonatomic) NSDictionary * volumeInfo;
 @property (strong, nonatomic) NSDictionary * saleInfo;
 @property (strong, nonatomic) NSDictionary * accessInfo;
+
+@property (strong, nonatomic) NSString *wordIndex;
+-(void)setdata;
+-(NSString*)getWordIndex;
+
+
 @end

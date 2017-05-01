@@ -10,12 +10,9 @@
 
 @interface BaseViewController : UIViewController
 
-@property (strong, nonatomic) UIView * bottomTabView;
-@property (strong, nonatomic) UIButton * tab1Btn;
-@property (strong, nonatomic) UIButton * tab2Btn;
-@property (strong, nonatomic) UIButton * tab3Btn;
-
+@property (strong, nonatomic) UIButton * menuBtn;
 
 - (void)setViewLayout;
-
+- (void)menuClicked:(int)index;
+- (void)hideMenuBtn;
 @end

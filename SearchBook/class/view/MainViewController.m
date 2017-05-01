@@ -7,8 +7,8 @@
 //
 
 #import "MainViewController.h"
-#import "LoginViewController.h"
 #import "SearchResultViewController.h"
+#import "MyBookViewController.h"
 #import "Items.h"
 #import "VolumeInfo.h"
 #import "ImageLinks.h"
@@ -37,7 +37,10 @@
 
 @property (assign, nonatomic) BOOL isFilterOpen;
 @property (assign, nonatomic) int filterSiteType;
-@property (assign, nonatomic) int filterType;
+@property (assign, nonatomic) kEBookType filterType;
+
+@property (strong, nonatomic) NSMutableArray * popArray;
+@property (strong, nonatomic) NSMutableArray * btnArray;
 
 @end
 
@@ -49,7 +52,9 @@
     if (self) {
         _isFilterOpen = NO;
         _filterSiteType = 0;
-        _filterType = 0;
+        _filterType = kEBookType_intitle;
+        _btnArray = [NSMutableArray new];
+        _popArray = [NSMutableArray new];
     }
     return self;
 }
@@ -64,18 +69,15 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    NSString * login = [[PreferenceManager sharedInstance] getPreference:@"login" defualtValue:@""];
-    if(login.length <= 0){
-        [[GUIManager sharedInstance] showPopup:[LoginViewController new] animation:NO complete:^(NSDictionary *dict) {
-            
-        }];
-    }
+    [self setOtherViews];
+    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"내책", nil] delegate:self];
 }
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
+    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"내책", nil] delegate:self];
+    [self setViewLayout];
     [_searchTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
     [_searchTextField setDelegate:self];
     [_searchTextField setPlaceholder:@"검색"];
@@ -85,27 +87,52 @@
 
 - (void)setOtherViews
 {
-    NSArray * popArray = [NSArray arrayWithObjects:@"flower",@"22",@"333",@"4444",@"555555",@"6666666",@"77777777",@"88888888",@"999999999",@"10", nil];
-    float y = _popularityLabel.bottomY + 10;
-    for (int i = 0 ; i < 10; i++) {
-        UIButton * btn = [UIButton new];
-        [btn setFrame:CGRectMake(0, y + (30 * i), _popularityView.width, 20)];
-        [btn setTitle:[popArray objectAtIndex:i] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        [btn setTitleColor:RGBA(0, 0, 255, 0.5) forState:UIControlStateHighlighted];
-        [btn.titleLabel setTextAlignment:NSTextAlignmentCenter];
-        [btn addTarget:self action:@selector(popAction:) forControlEvents:UIControlEventTouchUpInside];
-        [btn setTag:i];
-        [_popularityView addSubview:btn];
-    }
-    
+    [[StorageManager sharedInstance] loadSearchTextWithBlock:^(FIRDataSnapshot *snapshot) {
+        NSMutableDictionary * dict = (NSMutableDictionary*)snapshot.value;
+        [_popArray removeAllObjects];
+        
+        if(![dict isKindOfClass:[NSNull class]]){
+            for (NSDictionary * temp in [dict allKeys]){
+                [_popArray addObject:[dict objectForKey:temp]];
+            }
+            NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"count" ascending:NO];
+            [_popArray sortUsingDescriptors:[NSArray arrayWithObject:sorter]];
+        }
+        
+        float y = _popularityLabel.bottomY + 10;
+        for (int i = 0 ; i < MIN([_popArray count], 10); i++) {
+            UIButton * btn;
+            if([_btnArray count] == 0 || [_btnArray count] - 1 < i){
+                btn = [UIButton new];
+                [_btnArray addObject:btn];
+            }else{
+                btn = [_btnArray objectAtIndex:i];
+            }
+            
+            [btn setFrame:CGRectMake(0, y + (30 * i), _popularityView.width, 20)];
+            NSString * title =[[_popArray objectAtIndex:i] objectForKey:@"text"];
+            [btn setTitle:[title substringWithRange:NSMakeRange(0, title.length - 2)] forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+            [btn setTitleColor:RGBA(0, 0, 255, 0.5) forState:UIControlStateHighlighted];
+            [btn.titleLabel setTextAlignment:NSTextAlignmentCenter];
+            [btn addTarget:self action:@selector(popAction:) forControlEvents:UIControlEventTouchUpInside];
+            [btn setTag:i];
+            [_popularityView addSubview:btn];
+            
+        }
+        [_popularityLabel setHidden:NO];
+        
+    } withCancelBlock:^(NSError *error) {
+        
+    }];
+ 
 }
 
 
-- (void)search:(NSString*)str page:(int)page
+- (void)search:(NSString*)str page:(int)page type:(int)type
 {
     SearchResultViewController * searchRetView = [SearchResultViewController new];
-    [searchRetView search:str page:page];
+    [searchRetView search:str page:page type:type];
     [[GUIManager sharedInstance] moveToController:searchRetView animation:YES];
 }
 
@@ -142,21 +169,21 @@
 {
     switch (index) {
         case 0:{
-            _filterType = 0;
+            _filterType = kEBookType_intitle;
             [self buttonSelect:_filterBtn1];
             [self buttonNomarl:_filterBtn2];
             [self buttonNomarl:_filterBtn3];
             break;
         }
         case 1:{
-            _filterType = 1;
+            _filterType = kEBookType_inauthor;
             [self buttonNomarl:_filterBtn1];
             [self buttonSelect:_filterBtn2];
             [self buttonNomarl:_filterBtn3];
             break;
         }
         case 2:{
-            _filterType = 3;
+            _filterType = kEBookType_inpublisher;
             [self buttonNomarl:_filterBtn1];
             [self buttonNomarl:_filterBtn2];
             [self buttonSelect:_filterBtn3];
@@ -174,7 +201,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if(_searchTextField.text.length > 0){
-        [self search:_searchTextField.text page:1];
+        [self search:_searchTextField.text page:1 type:_filterType];
     }
     return YES;
 }
@@ -183,7 +210,7 @@
 #pragma mark - Action Methods
 - (IBAction)searchAction:(id)sender {
     if(_searchTextField.text.length > 0){
-        [self search:_searchTextField.text page:1];
+        [self search:_searchTextField.text page:1 type:_filterType];
     }
 }
 
@@ -209,7 +236,10 @@
 - (void)popAction:(UIButton*)sender
 {
     if(sender.titleLabel.text.length > 0){
-        [self search:sender.titleLabel.text page:1];
+        NSString * title = [[_popArray objectAtIndex:sender.tag] objectForKey:@"text"];
+        int type = [[[title componentsSeparatedByString:@"_"] lastObject] intValue];
+        [self search:sender.titleLabel.text page:1 type:type];
+        
     }
 }
 
@@ -218,7 +248,30 @@
     [_searchTextField resignFirstResponder];
 }
 
-#pragma mark
+- (void)menuClicked:(int)index
+{
+    [super menuClicked:index];
+    switch (index) {
+        case 0:
+            
+            break;
+        case 1:{
+            MyBookViewController * myBook = [MyBookViewController new];
+            [[GUIManager sharedInstance] moveToController:myBook animation:YES];
+            break;
+        }
+        case 2: {
+  
+            break;
+        }
+
+        default:
+            break;
+    }
+    
+}
+
+#pragma mark - Filter View
 
 - (void)buttonSelect:(UIButton*)btn
 {
