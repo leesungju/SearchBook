@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface MyBookViewController : BaseViewController
-
+@property (assign, nonatomic) BOOL isFav;
 @end

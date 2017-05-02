@@ -54,4 +54,18 @@
     return [NSString stringWithFormat:@"%@ 원", [numberFormatter stringFromNumber:num]];
 }
 
++ (NSString*)getJsonString:(NSObject*)jsonObject
+{
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonObject options:NSJSONWritingPrettyPrinted error:nil];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+
++ (NSArray*)getJsonArray:(NSString*)str
+{
+    return [NSJSONSerialization
+                     JSONObjectWithData:[str dataUsingEncoding:NSUTF8StringEncoding]
+                     options:kNilOptions
+                     error:nil];
+}
+
 @end

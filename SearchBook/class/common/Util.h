@@ -14,4 +14,6 @@
 + (NSString *)deviceUUID;
 + (BOOL)isMyDeviceUUID:(NSString*)uuid;
 + (NSString*)priceFormat:(int)price;
++ (NSString*)getJsonString:(NSObject*)jsonObject;
++ (NSArray*)getJsonArray:(NSString*)str;
 @end

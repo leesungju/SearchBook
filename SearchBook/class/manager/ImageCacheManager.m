@@ -83,7 +83,7 @@
 -(UIImage*)loadFromMemory:(NSString *)key {
     if (mMemCache == nil) return nil;
     
-    UIImage* cachedImage = [mMemCache objectForKey:key];
+    UIImage* cachedImage = [UIImage imageWithData:[mMemCache objectForKey:key]];
     return cachedImage;
 }
 
@@ -91,7 +91,8 @@
     if (mMemCache == nil) {
         mMemCache = [NSMutableDictionary new];
     }
-    [mMemCache setObject:image forKey:key];
+    NSData * data =  UIImagePNGRepresentation(image);
+    [mMemCache setObject:data forKey:key];
     return image;
 }
 @end

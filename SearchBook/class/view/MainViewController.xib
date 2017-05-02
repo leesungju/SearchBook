@@ -79,10 +79,10 @@
                     <rect key="frame" x="0.0" y="80" width="375" height="587"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qgg-lu-Y5I">
-                            <rect key="frame" x="137" y="104" width="100" height="320"/>
+                            <rect key="frame" x="37" y="104" width="300" height="320"/>
                             <subviews>
                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="인기 검색어" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIc-lX-ZjW">
-                                    <rect key="frame" x="0.0" y="0.0" width="100" height="20"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="PRN-VI-ayo"/>
                                     </constraints>
@@ -97,7 +97,7 @@
                                 <constraint firstItem="OIc-lX-ZjW" firstAttribute="top" secondItem="Qgg-lu-Y5I" secondAttribute="top" id="OSG-rF-5pM"/>
                                 <constraint firstItem="OIc-lX-ZjW" firstAttribute="leading" secondItem="Qgg-lu-Y5I" secondAttribute="leading" id="Wrq-N2-cBE"/>
                                 <constraint firstAttribute="trailing" secondItem="OIc-lX-ZjW" secondAttribute="trailing" id="xc7-50-FE0"/>
-                                <constraint firstAttribute="width" constant="100" id="zO3-39-2Vu"/>
+                                <constraint firstAttribute="width" constant="300" id="zO3-39-2Vu"/>
                             </constraints>
                         </view>
                     </subviews>

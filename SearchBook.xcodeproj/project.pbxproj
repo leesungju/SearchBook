@@ -32,6 +32,7 @@
 		14111BB31EB2FD2D00979CC6 /* SearchText.m in Sources */ = {isa = PBXBuildFile; fileRef = 14111BB21EB2FD2D00979CC6 /* SearchText.m */; };
 		1416E8241E93ADBB000C0C0E /* AladinBookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1416E8231E93ADBB000C0C0E /* AladinBookManager.m */; };
 		1416E82A1E93B999000C0C0E /* AladinItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1416E8291E93B999000C0C0E /* AladinItem.m */; };
+		146502F11EB851940097CBEE /* FavroiteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 146502F01EB851940097CBEE /* FavroiteManager.m */; };
 		14EA73031E8E66B400F902C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EA73021E8E66B400F902C1 /* main.m */; };
 		14EA73111E8E66B400F902C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14EA730F1E8E66B400F902C1 /* LaunchScreen.storyboard */; };
 		14EA731C1E8E66B400F902C1 /* SearchBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EA731B1E8E66B400F902C1 /* SearchBookTests.m */; };
@@ -154,6 +155,8 @@
 		1416E8231E93ADBB000C0C0E /* AladinBookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AladinBookManager.m; sourceTree = "<group>"; };
 		1416E8281E93B999000C0C0E /* AladinItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AladinItem.h; sourceTree = "<group>"; };
 		1416E8291E93B999000C0C0E /* AladinItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AladinItem.m; sourceTree = "<group>"; };
+		146502EF1EB851940097CBEE /* FavroiteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavroiteManager.h; sourceTree = "<group>"; };
+		146502F01EB851940097CBEE /* FavroiteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavroiteManager.m; sourceTree = "<group>"; };
 		14EA72FE1E8E66B400F902C1 /* SearchBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14EA73021E8E66B400F902C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		14EA73101E8E66B400F902C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -443,6 +446,8 @@
 				140CBDA51E8F711100F07119 /* ImageCacheManager.m */,
 				1416E8221E93ADBA000C0C0E /* AladinBookManager.h */,
 				1416E8231E93ADBB000C0C0E /* AladinBookManager.m */,
+				146502EF1EB851940097CBEE /* FavroiteManager.h */,
+				146502F01EB851940097CBEE /* FavroiteManager.m */,
 			);
 			path = manager;
 			sourceTree = "<group>";
@@ -805,6 +810,7 @@
 				14EA73D81E8E742800F902C1 /* GoogleBookManager.m in Sources */,
 				141030661EB3634000850C67 /* PreViewController.m in Sources */,
 				14111BB31EB2FD2D00979CC6 /* SearchText.m in Sources */,
+				146502F11EB851940097CBEE /* FavroiteManager.m in Sources */,
 				14EA73691E8E678D00F902C1 /* StorageManager.m in Sources */,
 				1410306A1EB3634000850C67 /* SearchResultViewController.m in Sources */,
 				14EA736A1E8E678D00F902C1 /* AutoCompleteMng.m in Sources */,

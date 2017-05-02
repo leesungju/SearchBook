@@ -86,6 +86,9 @@
                             <state key="normal" title="내책">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="myBookAction:" destination="-1" eventType="touchUpInside" id="vS1-hN-MZS"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahi-hU-dJL">
                             <rect key="frame" x="188" y="0.0" width="187" height="30"/>
@@ -93,6 +96,9 @@
                             <state key="normal" title="즐겨찾기">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="favAction:" destination="-1" eventType="touchUpInside" id="4Ol-ow-TTW"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.88672906159999998" green="0.88740354779999997" blue="0.88683354849999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -15,6 +15,7 @@
 #import "AladinItem.h"
 #import "SearchResultTableViewCell.h"
 #import "PreViewController.h"
+#import "MyBookViewController.h"
 
 @interface SearchResultViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIViewControllerPreviewingDelegate>
 @property (strong, nonatomic) IBOutlet UIView *topView;
@@ -70,16 +71,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     if ([self isForceTouchAvailable]) {
         self.previewingContext = [self registerForPreviewingWithDelegate:self sourceView:self.view];
     }
-    
+    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"내책", @"즐겨찾기", nil] delegate:self];
 }
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
+    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"내책" @"즐겨찾기", nil] delegate:self];
+    [self setViewLayout];
     [_googleTableView setDelegate:self];
     [_googleTableView setDataSource:self];
     [_googleTableView setHidden:YES];
@@ -152,6 +160,33 @@
     
 }
 
+- (void)menuClicked:(int)index
+{
+    [super menuClicked:index];
+    switch (index) {
+        case 0:
+            
+            break;
+        case 1:{
+            MyBookViewController * myBook = [MyBookViewController new];
+            [myBook setIsFav:NO];
+            [[GUIManager sharedInstance] moveToController:myBook animation:YES];
+            break;
+        }
+        case 2: {
+            MyBookViewController * myBook = [MyBookViewController new];
+            [myBook setIsFav:YES];
+            [[GUIManager sharedInstance] moveToController:myBook animation:YES];
+            break;
+            break;
+        }
+            
+        default:
+            break;
+    }
+    
+}
+
 #pragma mark - UITableView Delegate Methods
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -214,6 +249,17 @@
         [cell.etcLabel setText:etc];
         [cell.valueLabel setText:[Util priceFormat:(int)retailPrice.amount]];
         [cell setBuyLink:saleInfo.buyLink];
+        [cell setObject:[item getDict]];
+        
+        BOOL isCheck = [[FavroiteManager sharedInstance] checkFavItem:item.id];
+        [cell setIsFavSelected:isCheck];
+        if(isCheck){
+            [cell.favBtn setImage:[UIImage imageNamed:@"fav"] forState:UIControlStateNormal];
+        }else{
+            [cell.favBtn setImage:[UIImage imageNamed:@"fav_none"] forState:UIControlStateNormal];
+        }
+        [cell setIsGoogle:YES];
+        [cell setCellType:kCellType_none];
         
         return cell;
         
@@ -239,6 +285,17 @@
         [cell.etcLabel setText:etc];
         [cell.valueLabel setText:[Util priceFormat:[item.priceSales intValue]]];
         [cell setBuyLink:item.link];
+        [cell setObject:[item getDict]];
+        
+        BOOL isCheck = [[FavroiteManager sharedInstance] checkFavItem:item.itemId];
+        [cell setIsFavSelected:isCheck];
+        if(isCheck){
+            [cell.favBtn setImage:[UIImage imageNamed:@"fav"] forState:UIControlStateNormal];
+        }else{
+            [cell.favBtn setImage:[UIImage imageNamed:@"fav_none"] forState:UIControlStateNormal];
+        }
+        [cell setIsGoogle:NO];
+        [cell setCellType:kCellType_none];
         
         return cell;
         
@@ -394,6 +451,7 @@
     BOOL isForceTouchAvailable = NO;
     if ([self.traitCollection respondsToSelector:@selector(forceTouchCapability)]) {
         isForceTouchAvailable = self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable;
+        NSLog(@"self.traitCollection.forceTouchCapability : %ld", self.traitCollection.forceTouchCapability);
     }
     return isForceTouchAvailable;
 }
@@ -476,6 +534,8 @@
 - (void)searchText
 {
     NSMutableArray *tempArray = [NSMutableArray new];
+    [_googleItemArray removeAllObjects];
+    _googleItemArray = [_oriGoogleItemArray mutableCopy];
     for (NSDictionary * temp in _googleItemArray){
         Items * item = [Items new];
         [item setDict:temp];
@@ -490,6 +550,8 @@
     [_googleTableView reloadData];
     
     NSMutableArray *tempArray2 = [NSMutableArray new];
+    [_aladinItemArray removeAllObjects];
+    _aladinItemArray = [_oriAladinItemArray mutableCopy];
     for (AladinItem * temp in _aladinItemArray){
         [tempArray2 addObject:temp];
     }

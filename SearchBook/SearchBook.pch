@@ -31,12 +31,15 @@
     #import "ImageCacheManager.h"
     #import "AladinBookManager.h"
     #import "AutoCompleteMng.h"
+    #import "FavroiteManager.h"
 
     #import "JsonObject.h"
     #import "SearchText.h"
     #import "Items.h"
     #import "VolumeInfo.h"
+    #import "SaleInfo.h"
     #import "AladinItem.h"
+    #import "BookInfo.h"
 
     #import "BaseViewController.h"
     #import "SettingViewController.h"

@@ -70,13 +70,13 @@
 {
     [super viewDidAppear:animated];
     [self setOtherViews];
-    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"내책", nil] delegate:self];
+    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"내책", @"즐겨찾기", nil] delegate:self];
 }
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"내책", nil] delegate:self];
+    [[GUIManager sharedInstance] setSetting:[NSArray arrayWithObjects:@"홈", @"내책", @"즐겨찾기",nil] delegate:self];
     [self setViewLayout];
     [_searchTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
     [_searchTextField setDelegate:self];
@@ -257,11 +257,14 @@
             break;
         case 1:{
             MyBookViewController * myBook = [MyBookViewController new];
+            [myBook setIsFav:NO];
             [[GUIManager sharedInstance] moveToController:myBook animation:YES];
             break;
         }
         case 2: {
-  
+            MyBookViewController * myBook = [MyBookViewController new];
+            [myBook setIsFav:YES];
+            [[GUIManager sharedInstance] moveToController:myBook animation:YES];
             break;
         }
 
